@@ -22,7 +22,7 @@ public class ConexionEj
         try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña))
         {
             System.out.println("Conexión exitosa a Oracle");
-            System.out.println("HOLA CHAVOS");
+            System.out.println("HOLA xd");
             System.out.println("ESTO ES DE PRACTICA");
 
             System.out.println("Llaves con saltos de linea, como debe ser, entendiste, Isga?");

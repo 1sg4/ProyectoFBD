@@ -10,24 +10,26 @@ package ej;
  */
 import java.sql.*;
 
-public class ConexionEj {
-    public static void main(String[] args) {
+public class ConexionEj
+{
+
+    public static void main(String[] args)
+    {
         String url = "jdbc:oracle:thin:@//25.50.80.247:1521/xepdb1";
         String usuario = "equipoFBD";
         String contraseña = "10714223";
 
-        try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña)) {
+        try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña))
+        {
             System.out.println("Conexión exitosa a Oracle");
             System.out.println("HOLA CHAVOS");
             System.out.println("ESTO ES DE PRACTICA");
-            
-            
-            System.out.println("Hola joni");
-            
-            
-        } catch (SQLException e) {
+
+            System.out.println("Llaves con saltos de linea, como debe ser, entendiste, Isga?");
+
+        } catch (SQLException e)
+        {
             System.out.println("Error al conectar: " + e.getMessage());
         }
     }
 }
-

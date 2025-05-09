@@ -23,6 +23,7 @@ public class ConexionEj
         {
             System.out.println("Conexión exitosa a Oracle");
             System.out.println("Te amo, Cris <3");
+            System.out.println("ya llego tristan al HUBB");
 
             System.out.println("Llaves con saltos de linea, como debe ser, entendiste, Isga?");
 

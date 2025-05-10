@@ -22,9 +22,10 @@ public class ConexionEj
         try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña))
         {
             System.out.println("Conexión exitosa a Oracle");
+            System.out.println("Prueba");
             System.out.println("Te amo, Cris <3");
             System.out.println("ya llego tristan al HUBB");
-
+            System.out.println("Hola Isga :)");
             System.out.println("Llaves con saltos de linea, como debe ser, entendiste, Isga?");
 
         } catch (SQLException e)

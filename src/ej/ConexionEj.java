@@ -12,7 +12,6 @@ import java.sql.*;
 
 public class ConexionEj
 {
-
     public static void main(String[] args)
     {
         String url = "jdbc:oracle:thin:@//25.50.80.247:1521/xepdb1";
@@ -22,7 +21,7 @@ public class ConexionEj
         try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña))
         {
             System.out.println("Conexión exitosa a Oracle");
-            System.out.println("Prueba");
+            System.out.println("Mensaje de prueba, rama IAN");
         } catch (SQLException e)
         {
             System.out.println("Error al conectar: " + e.getMessage());

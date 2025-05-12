@@ -8,10 +8,12 @@ Integrantes del equipo:
 PASOS A SEGUIR PARA TRABAJAR CON SU RAMA (Netbeans):
 1: Click derecho sobre el proyecto (ya clonado).
 2: Click en git.
-3: Click en remote.
-4: Click en fetch.
-5: Next.
-6: Seleccionan la rama que contenga su nombre.
+3: Click en branch/tag.
+4: Click en switch to branch...
+5: Busquen la rama que tenga su nombre, debe ser algo tipo: origin/sunombre
+6: seleccionen la casilla checkout as..
+7: Colocan el nombre que le vana  dar a su rama (de preferencia su nombre).
+8: Switch.
 
 PASOS PARA HACER PUSH UNICAMENTE A SU RAMA:
 1: Click derecho sobre el proyecto (ya clonado).

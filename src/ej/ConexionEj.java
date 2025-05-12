@@ -21,6 +21,8 @@ public class ConexionEj
         try (Connection conexion = DriverManager.getConnection(url, usuario, contraseña))
         {
             System.out.println("Conexión exitosa a Oracle");
+            System.out.println("Mauricio");
+            System.out.println("Hola");
         } catch (SQLException e)
         {
             System.out.println("Error al conectar: " + e.getMessage());

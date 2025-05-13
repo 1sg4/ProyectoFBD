@@ -18,8 +18,6 @@ import javafx.stage.Stage;
  */
 public class PruebaJavaFX extends Application
 {
-
-    @Override
     public void start(Stage stage)
     {
         // Ruta local al video (puedes usar URL si está en línea)

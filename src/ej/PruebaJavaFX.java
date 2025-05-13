@@ -28,6 +28,12 @@ public class PruebaJavaFX extends Application
         MediaPlayer player = new MediaPlayer(media);
         MediaView mediaView = new MediaView(player);
 
+        mediaView.fitWidthProperty().bind(stage.widthProperty());
+        mediaView.fitHeightProperty().bind(stage.heightProperty());
+        mediaView.setPreserveRatio(true);
+
+        player.setVolume(1.0);
+        
         StackPane root = new StackPane(mediaView);
         Scene scene = new Scene(root, 800, 600);
 

@@ -22,6 +22,8 @@ public class ConexionEj
         {
             System.out.println("Conexión exitosa a Oracle");
             System.out.println("IAN");
+            System.out.println("Mauricio XD");
+            System.out.println("Hola");
         } catch (SQLException e)
         {
             System.out.println("Error al conectar: " + e.getMessage());

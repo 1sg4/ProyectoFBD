@@ -21,4 +21,115 @@ public class ClientesSQL
     {
         this.pstmt = pstmt;
     }
+
+    public int insertar(String idCliente, String idCine, String correoElectronico, int telefono, String nombre, String primerApellido, String segundoApellido)
+    {
+        try
+        {
+            // Establecer los parámetros en el PreparedStatement
+            pstmt.setString(1, idCliente);
+            pstmt.setString(2, idCine);
+            pstmt.setString(3, correoElectronico);
+            pstmt.setInt(4, telefono);
+            pstmt.setString(5, nombre);
+            pstmt.setString(6, primerApellido);
+            pstmt.setString(7, segundoApellido);
+            // Ejecutar la inserción
+            int reg = pstmt.executeUpdate();
+            return 1;
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    public int eliminar(String correoElectronico)
+    {
+        try
+        {
+            pstmt.setString(1, correoElectronico);
+            int reg = pstmt.executeUpdate();
+            if (reg > 0)
+            {
+                return 0;
+            } else
+            {
+                return 1;
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int modificar(String idCliente, String idCine, String correoElectronico, int telefono, String nombre, String primerApellido, String segundoApellido)
+    {
+        try
+        {
+            pstmt.setString(1, idCliente);
+            pstmt.setString(2, idCine);
+            pstmt.setString(3, correoElectronico);
+            pstmt.setInt(4, telefono);
+            pstmt.setString(5, nombre);
+            pstmt.setString(6, primerApellido);
+            pstmt.setString(7, segundoApellido);
+            int reg = pstmt.executeUpdate();
+            if (reg > 0)
+            {
+                return 0;
+            } else
+            {
+                return 1;
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
+    public Clientes buscar(String correoElectronico)
+    {
+        try
+        {
+            pstmt.setString(1, correoElectronico);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next())
+            {
+                String idCliente = rs.getString("idCliente");
+                String idCine = rs.getString("idCine");
+                int telefono = rs.getInt("telefono");
+                String nombre = rs.getString("nombre");
+                String primerApellido = rs.getString("primerApellido");
+                String segundoApellido = rs.getString("segundoApellido");
+                return new Clientes(idCliente,idCine,correoElectronico,telefono,nombre,primerApellido,segundoApellido);
+            } else
+            {
+                return null;
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Clientes> listarC()
+    {
+        ArrayList<Clientes> lista = new ArrayList<>();
+        try
+        {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                Clientes c = new Clientes(rs.getString("idCliente"), rs.getString("idCine"),rs.getString("correoElectronico"), rs.getInt("telefono"), rs.getString("nombre"),rs.getString("primerApellido"),rs.getString("segundoApellido"));
+                lista.add(c);
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return lista;
+    }
 }

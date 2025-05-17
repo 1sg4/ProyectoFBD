@@ -31,10 +31,10 @@ public class PagosSQL
         {
             // Establecer los parámetros en el PreparedStatement
             pstmt.setString(1, idPago);
-            pstmt.setString(2, idCliente);
-            pstmt.setInt(3, cantBoletos);
-            pstmt.setString(4, metodoPago);
-            pstmt.setInt(5, montoPagado);
+            pstmt.setString(5, idCliente);
+            pstmt.setInt(2, cantBoletos);
+            pstmt.setString(3, metodoPago);
+            pstmt.setInt(4, montoPagado);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
             return 1;

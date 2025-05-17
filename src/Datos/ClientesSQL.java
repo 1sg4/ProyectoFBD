@@ -28,12 +28,12 @@ public class ClientesSQL
         {
             // Establecer los parámetros en el PreparedStatement
             pstmt.setString(1, idCliente);
-            pstmt.setString(2, idCine);
-            pstmt.setString(3, correoElectronico);
-            pstmt.setInt(4, telefono);
-            pstmt.setString(5, nombre);
-            pstmt.setString(6, primerApellido);
-            pstmt.setString(7, segundoApellido);
+            pstmt.setString(7, idCine);
+            pstmt.setString(2, correoElectronico);
+            pstmt.setInt(3, telefono);
+            pstmt.setString(4, nombre);
+            pstmt.setString(5, primerApellido);
+            pstmt.setString(6, segundoApellido);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
             return 1;

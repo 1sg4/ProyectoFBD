@@ -132,4 +132,24 @@ public class ClientesSQL
         }
         return lista;
     }
+   public String generarNuevoID() {
+    try {
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            String ultimoID = rs.getString("ULTIMO_ID");
+
+            if (ultimoID == null) {
+                return "C00000001"; // Primer cliente
+            } else {
+                int numero = Integer.parseInt(ultimoID.substring(1));
+                numero++;
+                return String.format("C%08d", numero);
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return null;
+}
+
 }

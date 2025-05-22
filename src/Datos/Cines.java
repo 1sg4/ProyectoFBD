@@ -55,5 +55,9 @@ public class Cines
         this.idDireccion = idDireccion;
     }
     
+     @Override
+    public String toString() {
+        return nombreCine;
+    }
     
 }

@@ -6,6 +6,7 @@ package Datos;
 
 import java.io.InputStream;
 import java.util.Date;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -13,23 +14,24 @@ import java.util.Date;
  */
 public class Peliculas
 {
+
     private String cvePelicula;
     private String nombrePelicula;
-    private Date fechaEstreno;
+    private String fechaEstreno;
     private String idIdioma;
     private String idClasificacion;
     private String subtitulos;
     private String duracion;
     private String sinopsis;
     private String reparto;
-    private InputStream trailer; // posiblemente esto lo cambiemos, pero hay que investigar mas al respecto.
-    private InputStream fotoRepresentativa;
+    private String trailer; // posiblemente esto lo cambiemos, pero hay que investigar mas al respecto.
+    private String fotoRepresentativa;
 
     public Peliculas()
     {
     }
 
-    public Peliculas(String cvePelicula, String nombrePelicula, Date fechaEstreno, String idIdioma, String idClasificacion, String subtitulos, String duracion, String sinopsis, String reparto, InputStream trailer, InputStream fotoRepresentativa)
+    public Peliculas(String cvePelicula, String nombrePelicula, String fechaEstreno, String idIdioma, String idClasificacion, String subtitulos, String duracion, String sinopsis, String reparto, String trailer, String fotoRepresentativa)
     {
         this.cvePelicula = cvePelicula;
         this.nombrePelicula = nombrePelicula;
@@ -64,12 +66,12 @@ public class Peliculas
         this.nombrePelicula = nombrePelicula;
     }
 
-    public Date getFechaEstreno()
+    public String getFechaEstreno()
     {
         return fechaEstreno;
     }
 
-    public void setFechaEstreno(Date fechaEstreno)
+    public void setFechaEstreno(String fechaEstreno)
     {
         this.fechaEstreno = fechaEstreno;
     }
@@ -134,25 +136,40 @@ public class Peliculas
         this.reparto = reparto;
     }
 
-    public InputStream getTrailer()
+    public String getTrailer()
     {
         return trailer;
     }
 
-    public void setTrailer(InputStream trailer)
+    public void setTrailer(String trailer)
     {
         this.trailer = trailer;
     }
 
-    public InputStream getFotoRepresentativa()
+    public String getFotoRepresentativa()
     {
         return fotoRepresentativa;
     }
 
-    public void setFotoRepresentativa(InputStream fotoRepresentativa)
+    public void setFotoRepresentativa(String fotoRepresentativa)
     {
         this.fotoRepresentativa = fotoRepresentativa;
     }
-    
-    
+
+
+    @Override
+    public String toString()
+    {
+        return "Clave: " + cvePelicula
+                + ", Nombre: " + nombrePelicula
+                + ", Fecha: " + fechaEstreno
+                + ", Idioma: " + idIdioma
+                + "Id clasificaion: " + idClasificacion
+                + "sSubtitulos: " + subtitulos
+                + "Duracion: " + duracion
+                + "Sipnosis: " + sinopsis
+                + "Reparto: " + reparto
+                + "Trailer: " + trailer;
+    }
+
 }

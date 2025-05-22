@@ -21,7 +21,7 @@ public class PruebaJavaFX extends Application
     public void start(Stage stage)
     {
         // Ruta local al video (puedes usar URL si está en línea)
-        String videoPath = "file:///C:/Users/santi/Downloads/vidioPrueba.mp4";
+        String videoPath = "file:///C:/Users/camac/Videos/prbbd/hola.mp4";
 
         Media media = new Media(videoPath);
         MediaPlayer player = new MediaPlayer(media);

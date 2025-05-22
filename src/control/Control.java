@@ -4,18 +4,8 @@
  */
 package control;
 
-<<<<<<< HEAD
-import Datos.BoletoSQL;
-import Datos.Boletos;
-import Datos.Cines;
-import Datos.ClientesSQL;
-import Datos.Conexion;
-import Datos.ElementosAsientosSQL;
-import Datos.FuncionesSQL;
-import Datos.PagosSQL;
-=======
+
 import Datos.*;
->>>>>>> 275d1a534485bd05f10b863283e64f851546b3b7
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -33,12 +23,9 @@ import java.sql.ResultSet;
  */
 public class Control
 {
-<<<<<<< HEAD
 
     Connection conn;
-=======
-      Connection conn;
->>>>>>> 275d1a534485bd05f10b863283e64f851546b3b7
+
 //Metodos Boleto
 
     public int insertarB(String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal) throws SQLException
@@ -58,7 +45,7 @@ public class Control
     }
 
     //Metodos Clientes
-    public int insertarC(String idCliente, String idCine, String correoElectronico, int telefono, String nombre, String primerApellido, String segundoApellido)
+    public int insertarC(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
     {
         try
         {
@@ -165,9 +152,6 @@ public class Control
     //Meotodo Peliculas
     //No he buscado bien lo de insertar un video o imagen
     //Por lo tanto no he puesto nada de peliculas
-<<<<<<< HEAD
-
-=======
     
     
     public ArrayList<Cines> leerTodosCines()
@@ -207,6 +191,4 @@ public class Control
         return cines;
     }
     
-    
->>>>>>> 275d1a534485bd05f10b863283e64f851546b3b7
 }

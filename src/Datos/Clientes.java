@@ -13,7 +13,7 @@ public class Clientes
     private String idCliente;
     private String idCine;
     private String correoElectronico;
-    private int telefono;
+    private long telefono;
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
@@ -22,7 +22,7 @@ public class Clientes
     {
     }
 
-    public Clientes(String idCliente, String idCine, String correoElectronico, int telefono, String nombre, String primerApellido, String segundoApellido)
+    public Clientes(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
     {
         this.idCliente = idCliente;
         this.idCine = idCine;
@@ -63,7 +63,7 @@ public class Clientes
         this.correoElectronico = correoElectronico;
     }
 
-    public int getTelefono()
+    public long getTelefono()
     {
         return telefono;
     }

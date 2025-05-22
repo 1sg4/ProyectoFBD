@@ -23,6 +23,7 @@ public class VtnClientes extends javax.swing.JFrame
     public VtnClientes()
     {
         initComponents();
+        cargarCinesEnComboBox();
         Control ctr = new Control();
         String idCliente = ctr.generarIDCliente();
         if (idCliente != null)
@@ -279,7 +280,7 @@ public class VtnClientes extends javax.swing.JFrame
         String nombre = txtNombre.getText();
         String primerApellido = txtPrimerA.getText();
         String segundoApellido = txtSegundoA.getText();
-        int tel = 0;
+        long tel = 0;
         int resultado = 0;
         Cines seleccionado = (Cines) CBCine.getSelectedItem();
         if (seleccionado != null)
@@ -329,15 +330,23 @@ public class VtnClientes extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "El telefono debe ser número entero");
             return;
         }
-        tel = Integer.parseInt(telefono);
+        tel = Long.parseLong(telefono);
         boolean telefonoCompleto = txtTelefono.getText().matches("\\d{10}");
+        if (!telefonoCompleto)
+        {
+            JOptionPane.showMessageDialog(this,"El numero de telefono no esta completo");
+        }
         if (!Validaciones.noVacio(correoElectronico))
         {
             JOptionPane.showMessageDialog(this, "El correo no puede estar vacío");
             return;
         }
         boolean correoValido = txtCorreo.getText().matches("^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{3,}$");
-
+        if (!correoValido)
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese un correo valido");
+            return;
+        }
         resultado = ctr.insertarC(idCliente, idCine, correoElectronico, tel, nombre, primerApellido, segundoApellido);
         if (resultado > 0)
         {
@@ -392,6 +401,19 @@ public class VtnClientes extends javax.swing.JFrame
                 new VtnClientes().setVisible(true);
             }
         });
+    }
+
+    private void cargarCinesEnComboBox()
+    {
+        Control ctr = new Control();
+        List<Cines> cinesList = ctr.leerTodosCines(); // tu método ya funcionando
+
+        CBCine.removeAllItems(); // Limpia antes de cargar
+
+        for (Cines cine : cinesList)
+        {
+            CBCine.addItem(cine); // Agrega el objeto completo
+        }
     }
 
 

@@ -22,7 +22,7 @@ public class ClientesSQL
         this.pstmt = pstmt;
     }
 
-    public int insertar(String idCliente, String idCine, String correoElectronico, int telefono, String nombre, String primerApellido, String segundoApellido)
+    public int insertar(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
     {
         try
         {
@@ -30,7 +30,7 @@ public class ClientesSQL
             pstmt.setString(1, idCliente);
             pstmt.setString(7, idCine);
             pstmt.setString(2, correoElectronico);
-            pstmt.setInt(3, telefono);
+            pstmt.setLong(3, telefono);
             pstmt.setString(4, nombre);
             pstmt.setString(5, primerApellido);
             pstmt.setString(6, segundoApellido);
@@ -63,14 +63,14 @@ public class ClientesSQL
         }
     }
 
-    public int modificar(String idCliente, String idCine, String correoElectronico, int telefono, String nombre, String primerApellido, String segundoApellido)
+    public int modificar(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
     {
         try
         {
             pstmt.setString(1, idCliente);
             pstmt.setString(2, idCine);
             pstmt.setString(3, correoElectronico);
-            pstmt.setInt(4, telefono);
+            pstmt.setLong(4, telefono);
             pstmt.setString(5, nombre);
             pstmt.setString(6, primerApellido);
             pstmt.setString(7, segundoApellido);

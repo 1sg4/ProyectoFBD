@@ -10,6 +10,7 @@ package Datos;
  */
 public class Cines
 {
+
     private String idCine;
     private String nombreCine;
     private String idDireccion;
@@ -54,10 +55,11 @@ public class Cines
     {
         this.idDireccion = idDireccion;
     }
-    
-     @Override
-    public String toString() {
-        return nombreCine;
+
+    @Override
+    public String toString()
+    {
+        return this.nombreCine; // Solo se muestra esto en el JComboBox
     }
-    
+
 }

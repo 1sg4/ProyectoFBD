@@ -65,8 +65,7 @@ public class VtnClientes extends javax.swing.JFrame
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(475, 650));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(26, 43, 76));
 
@@ -121,6 +120,13 @@ public class VtnClientes extends javax.swing.JFrame
         BtnCancelar.setBackground(new java.awt.Color(176, 190, 197));
         BtnCancelar.setForeground(new java.awt.Color(21, 21, 21));
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -288,6 +294,29 @@ public class VtnClientes extends javax.swing.JFrame
         }
         
     }//GEN-LAST:event_BtnRegistrarActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BtnCancelarActionPerformed
+    {//GEN-HEADEREND:event_BtnCancelarActionPerformed
+        if (txtNombre.getText().equals("") && txtIdCliente.getText().equals("") 
+                && txtPrimerA.getText().equals("") && txtSegundoA.getText().equals("") && txtTelefono.getText().equals("")
+                && txtCorreo.getText().equals(""))
+        {
+            this.dispose();
+        } else
+        {
+            int confirma = JOptionPane.showConfirmDialog(null, "¿Desea descartar los cambios?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION)
+            {
+                txtNombre.setText("");
+                txtIdCliente.setText("");
+                txtPrimerA.setText("");
+                txtSegundoA.setText(""); 
+                txtTelefono.setText("");
+                txtCorreo.setText("");
+                this.dispose();
+            } 
+        } 
+    }//GEN-LAST:event_BtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

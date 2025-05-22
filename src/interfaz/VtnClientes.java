@@ -7,8 +7,10 @@ package interfaz;
 import Datos.Cines;
 import control.Control;
 import control.Validaciones;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -24,16 +26,6 @@ public class VtnClientes extends javax.swing.JFrame
     {
         initComponents();
         cargarCinesEnComboBox();
-        Control ctr = new Control();
-        String idCliente = ctr.generarIDCliente();
-        if (idCliente != null)
-        {
-            txtIdCliente.setText(idCliente);
-        } else
-        {
-            JOptionPane.showMessageDialog(this, "Error al generar el ID del cliente.");
-        }
-        txtIdCliente.setEditable(false);
     }
 
     /**
@@ -272,90 +264,29 @@ public class VtnClientes extends javax.swing.JFrame
 
     private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BtnRegistrarActionPerformed
     {//GEN-HEADEREND:event_BtnRegistrarActionPerformed
-        Control ctr = new Control();
-        String idCine = "";
-        String idCliente = ctr.generarIDCliente();
-        String correoElectronico = txtCorreo.getText();
-        String telefono = txtTelefono.getText();
-        String nombre = txtNombre.getText();
-        String primerApellido = txtPrimerA.getText();
-        String segundoApellido = txtSegundoA.getText();
-        long tel = 0;
-        int resultado = 0;
-        Cines seleccionado = (Cines) CBCine.getSelectedItem();
-        if (seleccionado != null)
+        try
         {
-            idCine = seleccionado.getIdCine();
-        } else
+            Control ctr = new Control();
+            String idCine = "";
+            String idCliente = txtIdCliente.getText();
+            String correoElectronico = txtCorreo.getText();
+            String telefono = txtTelefono.getText();
+            String nombre = txtNombre.getText();
+            String primerApellido = txtPrimerA.getText();
+            String segundoApellido = txtSegundoA.getText();
+            long tel = 0;
+            Cines seleccionado = (Cines) CBCine.getSelectedItem();
+            if (seleccionado != null)
+            {
+                idCine = seleccionado.getIdCine();
+            }
+            tel = Long.parseLong(telefono);
+            ctr.insertarC(idCliente, idCine, correoElectronico, tel, nombre, primerApellido, segundoApellido);
+        } catch (SQLException e)
         {
-            JOptionPane.showMessageDialog(this, "Seleccione un cine.");
-            return;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + e.getMessage());
         }
-        if (!Validaciones.noVacio(nombre))
-        {
-            JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío");
-            return;
-        }
-        if (!Validaciones.esTexto(nombre))
-        {
-            JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras");
-            return;
-        }
-        nombre = Validaciones.primeraMayuscula(nombre);
-        if (!Validaciones.noVacio(primerApellido))
-        {
-            JOptionPane.showMessageDialog(this, "El Apellido no puede estar vacío");
-            return;
-        }
-        if (!Validaciones.esTexto(primerApellido))
-        {
-            JOptionPane.showMessageDialog(this, "El Apellido solo debe contener letras");
-            return;
-        }
-        primerApellido = Validaciones.primeraMayuscula(primerApellido);
-        if (!Validaciones.esTexto(segundoApellido))
-        {
-            JOptionPane.showMessageDialog(this, "El Apellido solo debe contener letras");
-            return;
-        }
-        segundoApellido = Validaciones.primeraMayuscula(segundoApellido);
-
-        if (!Validaciones.noVacio(telefono))
-        {
-            JOptionPane.showMessageDialog(this, "El telefono no puede estar vacía");
-            return;
-        }
-        if (!Validaciones.esNumeroEntero(telefono))
-        {
-            JOptionPane.showMessageDialog(this, "El telefono debe ser número entero");
-            return;
-        }
-        tel = Long.parseLong(telefono);
-        boolean telefonoCompleto = txtTelefono.getText().matches("\\d{10}");
-        if (!telefonoCompleto)
-        {
-            JOptionPane.showMessageDialog(this,"El numero de telefono no esta completo");
-        }
-        if (!Validaciones.noVacio(correoElectronico))
-        {
-            JOptionPane.showMessageDialog(this, "El correo no puede estar vacío");
-            return;
-        }
-        boolean correoValido = txtCorreo.getText().matches("^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{3,}$");
-        if (!correoValido)
-        {
-            JOptionPane.showMessageDialog(this, "Ingrese un correo valido");
-            return;
-        }
-        resultado = ctr.insertarC(idCliente, idCine, correoElectronico, tel, nombre, primerApellido, segundoApellido);
-        if (resultado > 0)
-        {
-            JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente.");
-            this.dispose();
-        } else
-        {
-            JOptionPane.showMessageDialog(this, "Error al registrar el cliente.");
-        }
+        
     }//GEN-LAST:event_BtnRegistrarActionPerformed
 
     /**

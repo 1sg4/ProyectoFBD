@@ -3,18 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Datos;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author santi
  */
 public class ClientesSQL
 {
+
     PreparedStatement pstmt;
 
     public ClientesSQL(PreparedStatement pstmt)
@@ -22,7 +25,7 @@ public class ClientesSQL
         this.pstmt = pstmt;
     }
 
-    public int insertar(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
+    public void insertar(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
     {
         try
         {
@@ -36,13 +39,14 @@ public class ClientesSQL
             pstmt.setString(6, segundoApellido);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
-            return 1;
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return -1;
+            
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
+
     }
+
     public int eliminar(String correoElectronico)
     {
         try
@@ -84,7 +88,6 @@ public class ClientesSQL
             }
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
             return -1;
         }
     }
@@ -103,7 +106,7 @@ public class ClientesSQL
                 String nombre = rs.getString("nombre");
                 String primerApellido = rs.getString("primerApellido");
                 String segundoApellido = rs.getString("segundoApellido");
-                return new Clientes(idCliente,idCine,correoElectronico,telefono,nombre,primerApellido,segundoApellido);
+                return new Clientes(idCliente, idCine, correoElectronico, telefono, nombre, primerApellido, segundoApellido);
             } else
             {
                 return null;
@@ -123,7 +126,7 @@ public class ClientesSQL
             ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
-                Clientes c = new Clientes(rs.getString("idCliente"), rs.getString("idCine"),rs.getString("correoElectronico"), rs.getInt("telefono"), rs.getString("nombre"),rs.getString("primerApellido"),rs.getString("segundoApellido"));
+                Clientes c = new Clientes(rs.getString("idCliente"), rs.getString("idCine"), rs.getString("correoElectronico"), rs.getInt("telefono"), rs.getString("nombre"), rs.getString("primerApellido"), rs.getString("segundoApellido"));
                 lista.add(c);
             }
         } catch (SQLException ex)
@@ -132,24 +135,31 @@ public class ClientesSQL
         }
         return lista;
     }
-   public String generarNuevoID() {
-    try {
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            String ultimoID = rs.getString("ULTIMO_ID");
 
-            if (ultimoID == null) {
-                return "C00000001"; // Primer cliente
-            } else {
-                int numero = Integer.parseInt(ultimoID.substring(1));
-                numero++;
-                return String.format("C%08d", numero);
+    public String generarNuevoID()
+    {
+        try
+        {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next())
+            {
+                String ultimoID = rs.getString("ULTIMO_ID");
+
+                if (ultimoID == null)
+                {
+                    return "C00000001"; // Primer cliente
+                } else
+                {
+                    int numero = Integer.parseInt(ultimoID.substring(1));
+                    numero++;
+                    return String.format("C%08d", numero);
+                }
             }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
+        return null;
     }
-    return null;
-}
 
 }

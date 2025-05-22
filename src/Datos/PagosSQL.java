@@ -25,7 +25,7 @@ public class PagosSQL
         this.pstmt = pstmt;
     }
 
-    public int insertar(String idPago, String idCliente, int cantBoletos, String metodoPago, int montoPagado)
+    public void insertar(String idPago, String idCliente, int cantBoletos, String metodoPago, int montoPagado)
     {
         try
         {
@@ -37,11 +37,10 @@ public class PagosSQL
             pstmt.setInt(4, montoPagado);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
-            return 1;
+            
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 //    public int eliminar(String idPago)

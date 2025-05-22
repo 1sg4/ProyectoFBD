@@ -28,7 +28,7 @@ public class Control
 
 //Metodos Boleto
 
-    public int insertarB(String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal) throws SQLException
+    public void insertarB(String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal) throws SQLException
     {
         try
         {
@@ -36,16 +36,16 @@ public class Control
             String sql = "insert INTO BOLETOS (NO_BOLETO, ID_PAGO, ID_ASIENTO_FUNCION,CVE_PROMOCION,TIPO_BOLETO,FECHA_COMPRA,PRECIO_FINAL) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
             BoletoSQL insBol = new BoletoSQL(pstmt);
-            return insBol.insertar(noBoleto, idPago, idAsientoFuncion, cvePromocion, tipoBoleto, fechaCompra, precioFinal);
+             insBol.insertar(noBoleto, idPago, idAsientoFuncion, cvePromocion, tipoBoleto, fechaCompra, precioFinal);
 
         } catch (SQLException ex)
         {
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 
     //Metodos Clientes
-    public int insertarC(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
+    public void insertarC(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)throws SQLException
     {
         try
         {
@@ -53,11 +53,11 @@ public class Control
             String sql = "insert INTO CLIENTES (ID_CLIENTE, CORREO_ELECTRONICO, TELEFONO,NOMBRE,PRIMER_APELLIDO,SEGUNDO_APELLIDO,ID_CINE) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
             ClientesSQL insC = new ClientesSQL(pstmt);
-            return insC.insertar(idCliente, idCine, correoElectronico, telefono, nombre, primerApellido, segundoApellido);
+             insC.insertar(idCliente, idCine, correoElectronico, telefono, nombre, primerApellido, segundoApellido);
 
         } catch (SQLException ex)
         {
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class Control
     }
 
     //Metodo ElementosAsientos
-    public int insertarEA(String idAsientoFuncion, String disponibilidad, String noBoleto)
+    public void insertarEA(String idAsientoFuncion, String disponibilidad, String noBoleto)throws SQLException
     {
         try
         {
@@ -91,31 +91,17 @@ public class Control
             String sql = "insert INTO ELEMENTOS_ASIENTOS (ID_ASIENTO_FUNCION, DISPONIBILIDAD, NO_BOLETO) VALUES (?,?,?)";
             PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
             ElementosAsientosSQL insEA = new ElementosAsientosSQL(pstmt);
-            return insEA.insertar(idAsientoFuncion, disponibilidad, noBoleto);
+             insEA.insertar(idAsientoFuncion, disponibilidad, noBoleto);
 
         } catch (SQLException ex)
         {
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 
-    public int modificarEA(String idAsientoFuncion, String disponibilidad, String noBoleto) throws SQLException
-    {
-        try
-        {
-            conn = Conexion.getConnection();
-            String sql = "update ELEMENTOS_ASIENTOS set DISPONIBILIDAD=?, NO_BOLETO=? where ID_ASIENTO_FUNCION=?";
-            PreparedStatement pstmt = Conexion.creaConsulta(conn, sql);
-            ElementosAsientosSQL modP = new ElementosAsientosSQL(pstmt);
-            return modP.modificar(idAsientoFuncion, disponibilidad, noBoleto);
-        } catch (SQLException ex)
-        {
-            return -1;
-        }
-    }
 
     //Metodo Funciones
-    public int insertarF(String idFuncion, String cvePelicula, String idCineSalas, java.util.Date fecha, String hora)
+    public void insertarF(String idFuncion, String cvePelicula, String idCineSalas, java.util.Date fecha, String hora)throws SQLException
     {
         try
         {
@@ -123,16 +109,16 @@ public class Control
             String sql = "insert INTO FUNCIONES (ID_FUNCION, CVE_PELICULA, ID_CINE_SALAS,FECHA,HORA) VALUES (?,?,?,?,?)";
             PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
             FuncionesSQL insF = new FuncionesSQL(pstmt);
-            return insF.insertar(idFuncion, cvePelicula, idCineSalas, fecha, hora);
+             insF.insertar(idFuncion, cvePelicula, idCineSalas, fecha, hora);
 
         } catch (SQLException ex)
         {
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 
     //Metodo Pagos
-    public int insertarP(String idPago, String idCliente, int cantBoletos, String metodoPago, int montoPagado)
+    public void insertarP(String idPago, String idCliente, int cantBoletos, String metodoPago, int montoPagado)throws SQLException
     {
         try
         {
@@ -140,11 +126,11 @@ public class Control
             String sql = "insert INTO PAGOS (ID_PAGO, CANT_BOLETOS, METODO_PAGO,MONTO_PAGADO,ID_CLIENTE) VALUES (?,?,?,?,?)";
             PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
             PagosSQL insF = new PagosSQL(pstmt);
-            return insF.insertar(idPago, idCliente, cantBoletos, metodoPago, montoPagado);
+             insF.insertar(idPago, idCliente, cantBoletos, metodoPago, montoPagado);
 
         } catch (SQLException ex)
         {
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 

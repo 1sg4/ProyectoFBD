@@ -480,7 +480,7 @@ public class VtnPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnCarteleraMouseExited
         btnCartelera.setBackground(new Color(136, 167, 208));
     }//GEN-LAST:event_btnCarteleraMouseExited
-
+    
     public void listarCines()
     {
         model = (DefaultTableModel) tblCines.getModel();

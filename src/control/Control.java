@@ -4,6 +4,7 @@
  */
 package control;
 
+<<<<<<< HEAD
 import Datos.BoletoSQL;
 import Datos.Boletos;
 import Datos.Cines;
@@ -12,9 +13,13 @@ import Datos.Conexion;
 import Datos.ElementosAsientosSQL;
 import Datos.FuncionesSQL;
 import Datos.PagosSQL;
+=======
+import Datos.*;
+>>>>>>> 275d1a534485bd05f10b863283e64f851546b3b7
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +33,12 @@ import java.sql.ResultSet;
  */
 public class Control
 {
+<<<<<<< HEAD
 
     Connection conn;
+=======
+      Connection conn;
+>>>>>>> 275d1a534485bd05f10b863283e64f851546b3b7
 //Metodos Boleto
 
     public int insertarB(String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal) throws SQLException
@@ -156,5 +165,48 @@ public class Control
     //Meotodo Peliculas
     //No he buscado bien lo de insertar un video o imagen
     //Por lo tanto no he puesto nada de peliculas
+<<<<<<< HEAD
 
+=======
+    
+    
+    public ArrayList<Cines> leerTodosCines()
+    {
+        ArrayList<Cines> cines = new ArrayList<>();
+        PreparedStatement selectStmt = null;
+        ResultSet rs = null;
+        try
+        {
+            conn = Conexion.getConnection();
+            String readSQL = "SELECT * FROM cines";
+            selectStmt = conn.prepareStatement(readSQL);
+            rs = selectStmt.executeQuery(readSQL);
+            while (rs.next())
+            {
+                String id = rs.getString("id_cine");
+                String nomCine = rs.getString("nombre_cine");
+                String idDir = rs.getString("id_direccion");
+                Cines cn = new Cines(id, nomCine, idDir);
+                cines.add(cn);
+            }
+        } catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+            System.out.println("Failed to establish a connection with the DB");
+        } finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (selectStmt != null) selectStmt.close();
+            } catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return cines;
+    }
+    
+    
+>>>>>>> 275d1a534485bd05f10b863283e64f851546b3b7
 }

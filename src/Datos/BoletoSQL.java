@@ -22,7 +22,7 @@ public class BoletoSQL
     {
         this.pstmt = pstmt;
     }
-    public int insertar (String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal)
+    public void insertar (String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal)
     {
         try
         {
@@ -36,11 +36,9 @@ public class BoletoSQL
             pstmt.setInt(7,precioFinal);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
-            return 1;
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 //     public int eliminar(String noBoleto)

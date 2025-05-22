@@ -22,7 +22,7 @@ public class ElementosAsientosSQL
         this.pstmt = pstmt;
     }
 
-    public int insertar(String idAsientoFuncion, String disponibilidad, String noBoleto)
+    public void insertar(String idAsientoFuncion, String disponibilidad, String noBoleto)
     {
         try
         {
@@ -32,11 +32,9 @@ public class ElementosAsientosSQL
             pstmt.setString(3, noBoleto);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
-            return 1;
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
 //    public int eliminar(String idAsientoFuncion)

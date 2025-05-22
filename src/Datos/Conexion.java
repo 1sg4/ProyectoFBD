@@ -22,7 +22,7 @@ public class Conexion
     static String contraseña = "10714223";
 
     // Método para establecer conexión
-    public static boolean conectar()
+    public boolean conectar()
     {
         boolean b = false;
         try
@@ -72,7 +72,7 @@ public class Conexion
     }
 
     // Método para cerrar conexión (IMPORTANTE)
-    public static void desconectar()
+    public void desconectar()
     {
         try
         {

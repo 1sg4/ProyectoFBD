@@ -23,7 +23,7 @@ public class FuncionesSQL
         this.pstmt = pstmt;
     }
 
-    public int insertar(String idFuncion, String cvePelicula, String idCineSalas, Date fecha, String hora)
+    public void insertar(String idFuncion, String cvePelicula, String idCineSalas, Date fecha, String hora)
     {
         try
         {
@@ -35,11 +35,9 @@ public class FuncionesSQL
             pstmt.setString(5, hora);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
-            return 1;
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
     public int eliminar(String idFuncion)

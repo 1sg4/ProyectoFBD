@@ -417,7 +417,7 @@ public class VtnPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnComprarMouseClicked
 
     }//GEN-LAST:event_btnComprarMouseClicked
-
+    
     
     
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
@@ -446,12 +446,12 @@ public class VtnPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnRegistrarPeliculaMouseExited
         btnRegistrarPelicula.setBackground(new Color(136, 167, 208));
     }//GEN-LAST:event_btnRegistrarPeliculaMouseExited
-
     
     
+//    VtnClientes regClientes = new VtnClientes();
     private void btnRegistrarClienteMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnRegistrarClienteMouseClicked
     {//GEN-HEADEREND:event_btnRegistrarClienteMouseClicked
-        // TODO add your handling code here:
+  //      regClientes.setVisible(true);
     }//GEN-LAST:event_btnRegistrarClienteMouseClicked
 
     private void btnRegistrarClienteMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnRegistrarClienteMouseEntered

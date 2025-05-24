@@ -165,11 +165,12 @@ public class Peliculas
                 + ", Fecha: " + fechaEstreno
                 + ", Idioma: " + idIdioma
                 + "Id clasificaion: " + idClasificacion
-                + "sSubtitulos: " + subtitulos
+                + "Subtitulos: " + subtitulos
                 + "Duracion: " + duracion
                 + "Sipnosis: " + sinopsis
                 + "Reparto: " + reparto
-                + "Trailer: " + trailer;
+                + "Trailer: " + trailer
+                + "Foto: " + fotoRepresentativa;
     }
 
 }

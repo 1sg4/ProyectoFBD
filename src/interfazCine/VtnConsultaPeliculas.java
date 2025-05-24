@@ -27,7 +27,7 @@ PPelicula.add(pelicula1, "Pelicula 1");
 JPanel pelicula2 = new JPanel();
 pelicula2.setBackground(new java.awt.Color(153, 204, 255));
 pelicula2.add(new JLabel(new javax.swing.ImageIcon(getClass().getResource("/imagenes/toystory.png"))));
-pelicula2.add(new JLabel("Otra Película: Título de la segunda película"));
+pelicula2.add(new JLabel("Toy Story 4"));
 PPelicula.add(pelicula2, "Pelicula 2");
 
 
@@ -101,13 +101,11 @@ PPelicula.add(pelicula2, "Pelicula 2");
         PnlSig.setLayout(PnlSigLayout);
         PnlSigLayout.setHorizontalGroup(
             PnlSigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlSigLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(LblFlecha, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(LblFlecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
         PnlSigLayout.setVerticalGroup(
             PnlSigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LblFlecha, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+            .addComponent(LblFlecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
         );
 
         lblAnt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -139,7 +137,7 @@ PPelicula.add(pelicula2, "Pelicula 2");
                 .addComponent(PnlAnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89)
                 .addComponent(PPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(PnlSig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -148,14 +146,14 @@ PPelicula.add(pelicula2, "Pelicula 2");
             .addGroup(PInfLayout.createSequentialGroup()
                 .addGroup(PInfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PInfLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(PnlSig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PInfLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(PnlAnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PInfLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(PPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PInfLayout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(PnlSig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 

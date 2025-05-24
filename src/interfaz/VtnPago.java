@@ -4,6 +4,9 @@
  */
 package interfaz;
 
+import control.Control;
+import java.sql.SQLException;
+
 /**
  *
  * @author santi
@@ -46,7 +49,7 @@ public class VtnPago extends javax.swing.JFrame
         txtCantB = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(502, 450));
+        setPreferredSize(new java.awt.Dimension(502, 600));
 
         jPanel1.setBackground(new java.awt.Color(26, 43, 76));
 
@@ -170,7 +173,7 @@ public class VtnPago extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,7 +192,20 @@ public class VtnPago extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+//       try{
+//        Control ctr = new Control();
+//        String idCliente = txtIdCliente.getText();
+//        String idPago = txtIdPago.getText();
+//        String Metodo = txtMetodoP.getText();
+//        String monto = txtMonto.getText();
+//        String bol = txtCantB.getText();
+//        int boletos = Integer.parseInt(bol);
+//        double montoP=Double.parseDouble(monto);
+//        ctr.insertarP(idPago, idCliente, boletos, Metodo, montoP);
+//       }catch(SQLException ex)
+//       {
+//            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
+//       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

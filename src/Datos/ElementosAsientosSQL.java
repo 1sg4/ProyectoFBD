@@ -22,14 +22,16 @@ public class ElementosAsientosSQL
         this.pstmt = pstmt;
     }
 
-    public void insertar(String idAsientoFuncion, String disponibilidad, String noBoleto)
+    public void insertar(String idAsientoFuncion, String idFuncion,String noAsiento,String disponibilidad, String noBoleto) throws SQLException
     {
         try
         {
             // Establecer los parámetros en el PreparedStatement
             pstmt.setString(1, idAsientoFuncion);
-            pstmt.setString(2, disponibilidad);
-            pstmt.setString(3, noBoleto);
+            pstmt.setString(2, idFuncion);
+            pstmt.setString(3, noAsiento);
+            pstmt.setString(4, disponibilidad);
+            pstmt.setString(5, noBoleto);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
         } catch (SQLException ex)
@@ -57,25 +59,21 @@ public class ElementosAsientosSQL
 //        }
 //    }
 
-    public int modificar(String idAsientoFuncion, String disponibilidad, String noBoleto)
+    public boolean modificar(String idAsientoFuncion, String disponibilidad,String noBoleto) throws SQLException
     {
         try
         {
             pstmt.setString(1, idAsientoFuncion);
             pstmt.setString(2, disponibilidad);
-            pstmt.setString(3, noBoleto);
+            pstmt.setString(3,noBoleto);
+//            pstmt.setQueryTimeout(10);
             int reg = pstmt.executeUpdate();
-            if (reg > 0)
-            {
-                return 0;
-            } else
-            {
-                return 1;
-            }
+            return true;
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return -1;
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
+             ex.printStackTrace();
+             return false;
         }
     }
 
@@ -87,16 +85,18 @@ public class ElementosAsientosSQL
             ResultSet rs = pstmt.executeQuery();
             if (rs.next())
             {
+                String idFuncion = rs.getString("idFuncion");
+                String noAsiento=rs.getString("noAsiento");
                 String disponibilidad = rs.getString("disponibilidad");
                 String noBoleto = rs.getString("noBoleto");
-                return new ElementosAsientos(idAsientoFuncion,disponibilidad,noBoleto);
+                return new ElementosAsientos(idAsientoFuncion,idFuncion,noAsiento,disponibilidad,noBoleto);
             } else
             {
                 return null;
             }
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
             return null;
         }
     }
@@ -109,12 +109,12 @@ public class ElementosAsientosSQL
             ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
-                ElementosAsientos ea = new ElementosAsientos(rs.getString("idAsientoFuncion"), rs.getString("disponibilidad"),rs.getString("noBoleto"));
+                ElementosAsientos ea = new ElementosAsientos(rs.getString("idAsientoFuncion"),rs.getString("idFuncion"),rs.getString("noAsiento"), rs.getString("disponibilidad"),rs.getString("noBoleto"));
                 lista.add(ea);
             }
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
+           System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
         return lista;
     }

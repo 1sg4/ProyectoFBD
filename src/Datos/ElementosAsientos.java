@@ -11,16 +11,21 @@ package Datos;
 public class ElementosAsientos
 {
     private String idAsientoFuncion;
+    private String noAsiento;
+    private String idFuncion;
     private String disponibilidad;
     private String noBoleto;
+    
 
     public ElementosAsientos()
     {
     }
 
-    public ElementosAsientos(String idAsientoFuncion, String disponibilidad, String noBoleto)
+    public ElementosAsientos(String idAsientoFuncion, String noAsiento, String idFuncion, String disponibilidad, String noBoleto)
     {
         this.idAsientoFuncion = idAsientoFuncion;
+        this.noAsiento = noAsiento;
+        this.idFuncion = idFuncion;
         this.disponibilidad = disponibilidad;
         this.noBoleto = noBoleto;
     }
@@ -33,6 +38,26 @@ public class ElementosAsientos
     public void setIdAsientoFuncion(String idAsientoFuncion)
     {
         this.idAsientoFuncion = idAsientoFuncion;
+    }
+
+    public String getNoAsiento()
+    {
+        return noAsiento;
+    }
+
+    public void setNoAsiento(String noAsiento)
+    {
+        this.noAsiento = noAsiento;
+    }
+
+    public String getIdFuncion()
+    {
+        return idFuncion;
+    }
+
+    public void setIdFuncion(String idFuncion)
+    {
+        this.idFuncion = idFuncion;
     }
 
     public String getDisponibilidad()
@@ -54,6 +79,6 @@ public class ElementosAsientos
     {
         this.noBoleto = noBoleto;
     }
-    
+
     
 }

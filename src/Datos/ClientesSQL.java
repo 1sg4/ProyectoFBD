@@ -25,7 +25,7 @@ public class ClientesSQL
         this.pstmt = pstmt;
     }
 
-    public void insertar(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido)
+    public void insertar(String idCliente, String idCine, String correoElectronico, long telefono, String nombre, String primerApellido, String segundoApellido) throws SQLException
     {
         try
         {

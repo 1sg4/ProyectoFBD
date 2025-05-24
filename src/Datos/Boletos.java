@@ -16,13 +16,13 @@ public class Boletos
     private String cvePromocion;
     private String tipoBoleto;
     private Date fechaCompra;
-    private int precioFinal;
+    private double precioFinal;
 
     public Boletos()
     {
     }
 
-    public Boletos(String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal)
+    public Boletos(String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, double precioFinal)
     {
         this.noBoleto = noBoleto;
         this.idPago = idPago;
@@ -93,7 +93,7 @@ public class Boletos
         this.fechaCompra = fechaCompra;
     }
 
-    public int getPrecioFinal()
+    public double getPrecioFinal()
     {
         return precioFinal;
     }

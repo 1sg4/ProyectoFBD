@@ -14,15 +14,15 @@ import java.util.ArrayList;
  *
  * @author santi
  */
-public class BoletoSQL
+public class BoletosSQL
 {
     PreparedStatement pstmt;
 
-    public BoletoSQL(PreparedStatement pstmt)
+    public BoletosSQL(PreparedStatement pstmt)
     {
         this.pstmt = pstmt;
     }
-    public void insertar (String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, int precioFinal)
+    public boolean insertar (String noBoleto, String idPago, String idAsientoFuncion, String cvePromocion, String tipoBoleto, Date fechaCompra, double precioFinal) throws  SQLException
     {
         try
         {
@@ -33,12 +33,16 @@ public class BoletoSQL
             pstmt.setString(4, cvePromocion);
             pstmt.setString(5, tipoBoleto);
             pstmt.setDate(6, fechaCompra);
-            pstmt.setInt(7,precioFinal);
+            pstmt.setDouble(7,precioFinal);
             // Ejecutar la inserción
+//            pstmt.setQueryTimeout(10);
             int reg = pstmt.executeUpdate();
+            return true;
         } catch (SQLException ex)
         {
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
+             ex.printStackTrace();
+             return false;
         }
     }
 //     public int eliminar(String noBoleto)

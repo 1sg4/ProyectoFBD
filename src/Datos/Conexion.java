@@ -72,7 +72,7 @@ public class Conexion
     }
 
     // Método para cerrar conexión (IMPORTANTE)
-    public void desconectar()
+    public static void desconectar()
     {
         try
         {

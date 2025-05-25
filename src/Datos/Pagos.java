@@ -14,13 +14,13 @@ public class Pagos
     private String idCliente;
     private int cantBoletos;
     private String metodoPago;
-    private int montoPagado;
+    private double montoPagado;
 
     public Pagos()
     {
     }
 
-    public Pagos(String idPago, String idCliente, int cantBoletos, String metodoPago, int montoPagado)
+    public Pagos(String idPago, String idCliente, int cantBoletos, String metodoPago, double montoPagado)
     {
         this.idPago = idPago;
         this.idCliente = idCliente;
@@ -69,7 +69,7 @@ public class Pagos
         this.metodoPago = metodoPago;
     }
 
-    public int getMontoPagado()
+    public double getMontoPagado()
     {
         return montoPagado;
     }

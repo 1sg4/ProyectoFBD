@@ -64,14 +64,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" pref="725" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace pref="125" max="32767" attributes="0"/>
                       <Component id="jPanel3" min="-2" pref="550" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
@@ -120,11 +120,6 @@
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="txtFechaEstreno" min="-2" pref="165" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblNombre" min="-2" pref="71" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="txtNombre" min="-2" pref="165" max="-2" attributes="0"/>
-                                          </Group>
                                           <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Component id="lblDuracion" min="-2" pref="103" max="-2" attributes="0"/>
@@ -135,18 +130,36 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="lblSinopsis" min="-2" pref="66" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jScrollPane1" min="-2" pref="238" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="BtnRegistrar" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jScrollPane1" min="-2" pref="238" max="-2" attributes="0"/>
+                                                  <Component id="lblNombre" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="lblIDClasif" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="txtIdClasificaion" max="32767" attributes="0"/>
+                                                  <Component id="txtNombre" pref="165" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblReparto" min="-2" pref="66" max="-2" attributes="0"/>
-                                      <Component id="lblFoto" min="-2" pref="66" max="-2" attributes="0"/>
-                                      <Component id="lblTrailer" min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="lblReparto" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <Component id="lblFoto" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <Component id="lblTrailer" min="-2" pref="66" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="BtnRegistrar" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                          <Component id="BtnCancelar" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -157,11 +170,17 @@
                                   <Component id="btnSeleccionarFoto" min="-2" pref="158" max="-2" attributes="0"/>
                                   <Component id="lblArchivoSeleccionadoFoto" alignment="1" min="-2" pref="238" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="btnSeleccionarVideo" min="-2" pref="158" max="-2" attributes="0"/>
                               <Component id="lblArchivoSeleccionadoTrailer" min="-2" pref="238" max="-2" attributes="0"/>
-                              <Component id="BtnCancelar" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtRutaTrailer" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnSeleccionarVideo" alignment="0" pref="158" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="txtRutaFoto" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -175,11 +194,15 @@
                               <Component id="lblCvePeli" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCvePeli" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblReparto" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblReparto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtIdClasificaion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblIDClasif" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblNombre" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                                       <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -214,6 +237,8 @@
                                   <Component id="btnSeleccionarFoto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="lblArchivoSeleccionadoFoto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtRutaTrailer" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -244,20 +269,24 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="BtnRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="BtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="btnSeleccionarVideo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="lblArchivoSeleccionadoTrailer" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtRutaFoto" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="BtnRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                          <EmptySpace pref="81" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -470,6 +499,26 @@
                       </Border>
                     </Property>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtIdClasificaion">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdClasificaionActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblIDClasif">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="ID Clasificaion"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtRutaTrailer">
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtRutaFoto">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutaFotoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

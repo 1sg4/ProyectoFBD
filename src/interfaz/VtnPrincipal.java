@@ -448,10 +448,10 @@ public class VtnPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_btnRegistrarPeliculaMouseExited
     
     
-    VtnClientes regClientes = new VtnClientes();
+//    VtnClientes regClientes = new VtnClientes();
     private void btnRegistrarClienteMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnRegistrarClienteMouseClicked
     {//GEN-HEADEREND:event_btnRegistrarClienteMouseClicked
-        regClientes.setVisible(true);
+  //      regClientes.setVisible(true);
     }//GEN-LAST:event_btnRegistrarClienteMouseClicked
 
     private void btnRegistrarClienteMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnRegistrarClienteMouseEntered

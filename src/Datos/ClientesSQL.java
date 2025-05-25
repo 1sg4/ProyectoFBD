@@ -147,7 +147,7 @@ public class ClientesSQL
 
                 if (ultimoID == null)
                 {
-                    return "C00000001"; // Primer cliente
+                    return "M000000001"; // Primer Pelicula
                 } else
                 {
                     int numero = Integer.parseInt(ultimoID.substring(1));

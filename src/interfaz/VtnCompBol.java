@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Datos.Cines;
+import Datos.*;
 import control.Control;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Datos.Conexion;
 import java.sql.Connection;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
@@ -23,7 +24,11 @@ import javax.swing.SwingWorker;
  */
 public class VtnCompBol extends javax.swing.JFrame
 {
-
+    Control ctrl = new Control();
+    ArrayList<Promociones> listarPromociones = new ArrayList<>();
+    ArrayList<TipoBoleto> listarTipos = new ArrayList<>();
+    
+    
     /**
      * Creates new form VtnCompBol
      */
@@ -51,25 +56,18 @@ public class VtnCompBol extends javax.swing.JFrame
         txtBoleto = new javax.swing.JTextField();
         txtIdPago = new javax.swing.JTextField();
         txtAsiento = new javax.swing.JTextField();
-        txtProm = new javax.swing.JTextField();
         lblSala = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
-        lblPreAs = new javax.swing.JLabel();
-        txtSala = new javax.swing.JTextField();
         txtFecha = new javax.swing.JTextField();
-        txtPrecioAs = new javax.swing.JTextField();
-        btnConfirmar = new javax.swing.JButton();
+        btnRegistrarCompra = new javax.swing.JButton();
         lblFuncion = new javax.swing.JLabel();
         txtIdFuncion = new javax.swing.JTextField();
-        btnCancelar = new javax.swing.JButton();
+        btnCancelarOp = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         lblIdCliente = new javax.swing.JTextField();
         lblMonto = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
         lblMetodo = new javax.swing.JLabel();
-        txtMetodo = new javax.swing.JTextField();
-        lblCantBol = new javax.swing.JLabel();
-        txtCantidad = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -78,12 +76,20 @@ public class VtnCompBol extends javax.swing.JFrame
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
-        jSeparator9 = new javax.swing.JSeparator();
-        jSeparator10 = new javax.swing.JSeparator();
-        jSeparator11 = new javax.swing.JSeparator();
-        jSeparator12 = new javax.swing.JSeparator();
+        btnContinuaPago = new javax.swing.JButton();
+        btnCancelarPago = new javax.swing.JButton();
+        comboProm = new javax.swing.JComboBox<>();
+        comboTipoBoleto = new javax.swing.JComboBox<>();
+        comboMetodo = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(26, 43, 76));
 
@@ -101,32 +107,42 @@ public class VtnCompBol extends javax.swing.JFrame
         lblPromocion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblPromocion.setText("Clave de promocion:");
 
+        txtIdPago.setEnabled(false);
+
         lblSala.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblSala.setText("Tipo de sala:");
+        lblSala.setText("Tipo de boleto:");
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblFecha.setText("Fecha de compra:");
 
-        lblPreAs.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblPreAs.setText("Precio del asiento:");
-
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener()
+        btnRegistrarCompra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrarCompra.setText("Pagar");
+        btnRegistrarCompra.setEnabled(false);
+        btnRegistrarCompra.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnConfirmarActionPerformed(evt);
+                btnRegistrarCompraActionPerformed(evt);
             }
         });
 
         lblFuncion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblFuncion.setText("ID Funcion:");
 
-        btnCancelar.setText("Cancelar");
+        btnCancelarOp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelarOp.setText("Cancelar");
+        btnCancelarOp.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCancelarOpActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("ID Cliente:");
 
+        lblIdCliente.setEnabled(false);
         lblIdCliente.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -138,17 +154,44 @@ public class VtnCompBol extends javax.swing.JFrame
         lblMonto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMonto.setText("Monto a pagar:");
 
+        txtMonto.setEnabled(false);
+
         lblMetodo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMetodo.setText("Metodo de pago:");
-
-        lblCantBol.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblCantBol.setText("Cantidad de boletos:");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("DATOS DEL BOLETO");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setText("DATOS DE PAGO");
+
+        btnContinuaPago.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnContinuaPago.setText("Confirmar");
+        btnContinuaPago.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnContinuaPagoActionPerformed(evt);
+            }
+        });
+
+        btnCancelarPago.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelarPago.setText("Cancelar");
+        btnCancelarPago.setEnabled(false);
+        btnCancelarPago.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCancelarPagoActionPerformed(evt);
+            }
+        });
+
+        comboProm.setSelectedIndex(-1);
+
+        comboTipoBoleto.setSelectedIndex(-1);
+
+        comboMetodo.setSelectedIndex(-1);
+        comboMetodo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,6 +203,14 @@ public class VtnCompBol extends javax.swing.JFrame
                         .addGap(132, 132, 132)
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(comboProm, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,75 +220,61 @@ public class VtnCompBol extends javax.swing.JFrame
                                     .addComponent(lblFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblBoleto)
                                     .addComponent(lblNoAs, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblFecha)
-                                    .addComponent(lblSala, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPreAs, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblFecha))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(26, 26, 26)
                                         .addComponent(txtIdFuncion))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPrecioAs, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(1, 1, 1))))
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jSeparator4)
+                            .addComponent(jSeparator5)
+                            .addComponent(jSeparator7)
+                            .addComponent(jSeparator8)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblSala)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboTipoBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtAsiento, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                                     .addComponent(txtBoleto)))
-                            .addComponent(jSeparator4)
-                            .addComponent(jSeparator5)
-                            .addComponent(jSeparator7)
-                            .addComponent(jSeparator8)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnContinuaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtProm, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnCancelarOp, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIdPago)
-                            .addComponent(lblMonto)
-                            .addComponent(lblCantBol))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(txtIdPago)
-                            .addComponent(txtMonto)
-                            .addComponent(txtCantidad)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMetodo)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblMetodo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(77, 77, 77))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(btnConfirmar)
-                .addGap(160, 160, 160)
-                .addComponent(btnCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnRegistrarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnCancelarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(451, 451, 451))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblIdPago)
+                                    .addComponent(lblMonto))
+                                .addGap(51, 51, 51)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboMetodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblIdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(txtIdPago)
+                                    .addComponent(txtMonto))))
+                        .addGap(77, 77, 77))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,63 +300,50 @@ public class VtnCompBol extends javax.swing.JFrame
                             .addComponent(txtIdPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblBoleto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNoAs)
+                            .addComponent(lblMonto)
+                            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblNoAs)
-                                    .addComponent(lblMonto)
-                                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtProm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblPromocion)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblMetodo)))))
-                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPromocion))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
+                                .addGap(16, 16, 16)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblFecha)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCantBol)
-                                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblPreAs)
-                                    .addComponent(txtPrecioAs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblSala)
-                                    .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnConfirmar)
-                                    .addComponent(btnCancelar))
-                                .addGap(64, 64, 64))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(lblMetodo)
+                                    .addComponent(comboProm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFecha)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSala)
+                            .addComponent(comboTipoBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)))
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContinuaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -328,15 +352,15 @@ public class VtnCompBol extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,24 +377,134 @@ public class VtnCompBol extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConfirmarActionPerformed
-    {//GEN-HEADEREND:event_btnConfirmarActionPerformed
+    private void btnCancelarPagoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarPagoActionPerformed
+    {//GEN-HEADEREND:event_btnCancelarPagoActionPerformed
+        txtIdFuncion.setEnabled(true);
+        txtBoleto.setEnabled(true);
+        txtAsiento.setEnabled(true);
+        comboProm.setEnabled(true);
+        txtFecha.setEnabled(true);
+        comboTipoBoleto.setEnabled(true);
+        
+        lblIdCliente.setEnabled(false);
+        txtIdPago.setEnabled(false);
+        comboMetodo.setEnabled(false);
+        btnRegistrarCompra.setEnabled(false);
+        btnCancelarPago.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarPagoActionPerformed
+
+    private void btnContinuaPagoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnContinuaPagoActionPerformed
+    {//GEN-HEADEREND:event_btnContinuaPagoActionPerformed
+        if ("".equals(txtIdFuncion.getText()) || "".equals(txtBoleto.getText()) || "".equals(txtAsiento.getText())
+                || comboTipoBoleto.getSelectedIndex() == -1 || comboProm.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(null, "Espacios en blanco. Complete los campos obligatorios antes de continuar");
+        } else
+        {
+            String cantidad = "";
+            String promAplicada = comboProm.getSelectedItem().toString();
+            String montoPorPagar = comboTipoBoleto.getSelectedItem().toString();
+            switch (montoPorPagar)
+            {
+                case "NORMAL":
+                {
+                    if (promAplicada.equals("PROM-00000")) cantidad = "80";
+                    if (promAplicada.equals("PROM-00001")) cantidad = "56";
+                    if (promAplicada.equals("PROM-00002")) cantidad = "40";
+                    if (promAplicada.equals("PROM-00003")) cantidad = "48";                  
+                    break;
+                }
+                case "VIP":
+                {
+                    if (promAplicada.equals("PROM-00000")) cantidad = "200";
+                    if (promAplicada.equals("PROM-00001")) cantidad = "140";
+                    if (promAplicada.equals("PROM-00002")) cantidad = "100";
+                    if (promAplicada.equals("PROM-00003")) cantidad = "120";  
+                    break;
+                }
+            }
+            
+            txtMonto.setText(cantidad);
+            lblIdCliente.setEnabled(true);
+            txtIdPago.setEnabled(true);
+            comboMetodo.setEnabled(true);
+            btnRegistrarCompra.setEnabled(true);
+            btnCancelarPago.setEnabled(true);
+            
+            txtIdFuncion.setEnabled(false);
+            txtBoleto.setEnabled(false);
+            txtAsiento.setEnabled(false);
+            comboProm.setEnabled(false);
+            txtFecha.setEnabled(false);
+            comboTipoBoleto.setEnabled(false);
+            btnContinuaPago.setEnabled(false);
+            btnCancelarOp.setEnabled(false);
+        }
+        
+        
+    }//GEN-LAST:event_btnContinuaPagoActionPerformed
+
+    private void lblIdClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_lblIdClienteActionPerformed
+    {//GEN-HEADEREND:event_lblIdClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblIdClienteActionPerformed
+
+    private void btnCancelarOpActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarOpActionPerformed
+    {//GEN-HEADEREND:event_btnCancelarOpActionPerformed
+        if (txtIdFuncion.getText().equals("") && txtBoleto.getText().equals("") 
+                && txtAsiento.getText().equals("") && comboProm.getSelectedIndex() == -1 && txtFecha.getText().equals("")
+                && comboTipoBoleto.getSelectedIndex() == -1 && lblIdCliente.getText().equals("") && txtIdPago.getText().equals("")
+                && txtMonto.getText().equals("") && comboMetodo.getSelectedIndex() == -1)
+        {
+            this.dispose();
+        } else
+        {
+            int confirma = JOptionPane.showConfirmDialog(null, "¿Desea descartar los cambios?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION)
+            {
+                txtIdFuncion.setText("");
+                txtBoleto.setText("");
+                txtAsiento.setText("");
+                comboProm.setSelectedIndex(-1); 
+                txtFecha.setText("");
+                comboTipoBoleto.setSelectedIndex(-1);
+                lblIdCliente.setText("");
+                txtIdPago.setText("");
+                txtMonto.setText("");
+                comboMetodo.setSelectedIndex(-1);
+                this.dispose();
+            } 
+        } 
+    }//GEN-LAST:event_btnCancelarOpActionPerformed
+
+    private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarCompraActionPerformed
+    {//GEN-HEADEREND:event_btnRegistrarCompraActionPerformed
         try
         {
+            String p = "";
             String noBoleto = txtBoleto.getText();
             String idPago = txtIdPago.getText();
             String noAsiento = txtAsiento.getText();
-            String cveProm = txtProm.getText();
-            String tipoSala = txtSala.getText();
+            String cveProm = comboProm.getSelectedItem().toString();
+            String tipoBoleto = comboTipoBoleto.getSelectedItem().toString();
+            if (tipoBoleto.equals("NORMAL"))
+            {
+                p = "80";
+            } else if (tipoBoleto.equals("VIP"))
+            {
+                p = "200";
+            }         
+            if (comboTipoBoleto.getSelectedIndex() == -1)
+            {
+                tipoBoleto = "NORMAL";
+            }
             String fechaComp = txtFecha.getText();
-            String precioBol = txtPrecioAs.getText();
+            String precioBol = p;
             String idFuncion = txtIdFuncion.getText();
             String idCliente = lblIdCliente.getText();
-            String metodoPago = txtMetodo.getText();
+            String metodoPago = comboMetodo.getSelectedItem().toString();
             String montoPago = txtMonto.getText();
-            String cantBol = txtCantidad.getText();
 
-            int boletos = Integer.parseInt(cantBol);
             double montoP = Double.parseDouble(montoPago);
             double pre = Double.parseDouble(precioBol);
 
@@ -384,13 +518,13 @@ public class VtnCompBol extends javax.swing.JFrame
             try
             {
                 Control ctr = new Control();
-                System.out.println("conrolador creado");
-                boolean okPago=ctr.insertarP(conn, idPago, idCliente, boletos, metodoPago, montoP);
-                   boolean okBoleto,okModificacion;
+                System.out.println("controlador creado");
+                boolean okPago=ctr.insertarP(conn, idPago, idCliente, metodoPago, montoP);
+                boolean okBoleto,okModificacion;
                 if (okPago)
                 {
-                    System.out.println("insertarP funciono");
-                    okBoleto=ctr.insertarB(conn, noBoleto, idPago, idFuncion, cveProm, tipoSala, fechaSQL, pre);
+                    System.out.println("insertarPago funciono");
+                    okBoleto=ctr.insertarB(conn, noBoleto, idPago, idFuncion, cveProm, tipoBoleto, fechaSQL, pre);
                     if (okBoleto)
                     {
                         System.out.println("insertarB funciono");
@@ -419,14 +553,45 @@ public class VtnCompBol extends javax.swing.JFrame
         {
             Logger.getLogger(VtnCompBol.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_btnRegistrarCompraActionPerformed
 
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        cargaComboPromociones();
+        comboProm.setSelectedIndex(-1);
+        cargaComboTipoBoleto();
+        comboTipoBoleto.setSelectedIndex(-1);
+        cargaMetodosPago();
+        comboMetodo.setSelectedIndex(-1);
+    }//GEN-LAST:event_formWindowOpened
 
-    private void lblIdClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_lblIdClienteActionPerformed
-    {//GEN-HEADEREND:event_lblIdClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblIdClienteActionPerformed
-
+    public void cargaComboPromociones()
+    {
+        listarPromociones = ctrl.leerTodasPromociones();
+        
+        for (Promociones prom : listarPromociones)
+        {
+            comboProm.addItem(prom.getCvePromocion());
+        }
+    }
+    
+    public void cargaComboTipoBoleto()
+    {
+        listarTipos = ctrl.leerTodosTipoBoleto();
+        
+        for (TipoBoleto tb : listarTipos)
+        {
+            comboTipoBoleto.addItem(tb.getTipoBoleto());
+        }
+    }
+    
+    public void cargaMetodosPago()
+    {
+        comboMetodo.addItem("CREDITO");
+        comboMetodo.addItem("DEBITO");
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -473,25 +638,25 @@ public class VtnCompBol extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnCancelarOp;
+    private javax.swing.JButton btnCancelarPago;
+    private javax.swing.JButton btnContinuaPago;
+    private javax.swing.JButton btnRegistrarCompra;
+    private javax.swing.JComboBox<String> comboMetodo;
+    private javax.swing.JComboBox<String> comboProm;
+    private javax.swing.JComboBox<String> comboTipoBoleto;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
-    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblBoleto;
-    private javax.swing.JLabel lblCantBol;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFuncion;
     private javax.swing.JTextField lblIdCliente;
@@ -499,19 +664,13 @@ public class VtnCompBol extends javax.swing.JFrame
     private javax.swing.JLabel lblMetodo;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNoAs;
-    private javax.swing.JLabel lblPreAs;
     private javax.swing.JLabel lblPromocion;
     private javax.swing.JLabel lblSala;
     private javax.swing.JTextField txtAsiento;
     private javax.swing.JTextField txtBoleto;
-    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIdFuncion;
     private javax.swing.JTextField txtIdPago;
-    private javax.swing.JTextField txtMetodo;
     private javax.swing.JTextField txtMonto;
-    private javax.swing.JTextField txtPrecioAs;
-    private javax.swing.JTextField txtProm;
-    private javax.swing.JTextField txtSala;
     // End of variables declaration//GEN-END:variables
 }

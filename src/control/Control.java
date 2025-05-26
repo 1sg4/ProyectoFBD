@@ -117,13 +117,13 @@ public class Control
     }
 
     //Metodo Pagos
-    public boolean insertarP(Connection conn,String idPago, String idCliente, int cantBoletos, String metodoPago, double montoPagado)throws SQLException
+    public boolean insertarP(Connection conn,String idPago, String idCliente, String metodoPago, double montoPagado)throws SQLException
     {
         try{
-        String sql = "insert INTO PAGOS (ID_PAGO, CANT_BOLETOS, METODO_PAGO,MONTO_PAGADO,ID_CLIENTE) VALUES (?,?,?,?,?)";
+        String sql = "insert INTO PAGOS (ID_PAGO, METODO_PAGO,MONTO_PAGADO,ID_CLIENTE) VALUES (?,?,?,?,?)";
         PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
         PagosSQL insF = new PagosSQL(pstmt);
-        return insF.insertar(idPago, idCliente, cantBoletos, metodoPago, montoPagado);
+        return insF.insertar(idPago, idCliente, metodoPago, montoPagado);
         }catch(SQLException ex){
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
             return false;
@@ -172,6 +172,125 @@ public class Control
             }
         }
         return cines;
+    }
+    
+    
+    public ArrayList<Promociones> leerTodasPromociones()
+    {
+        ArrayList<Promociones> prom = new ArrayList<>();
+        PreparedStatement selectStmt = null;
+        ResultSet rs = null;
+        try
+        {
+            conn = Conexion.getConnection();
+            String readSQL = "SELECT * FROM promociones";
+            selectStmt = conn.prepareStatement(readSQL);
+            rs = selectStmt.executeQuery(readSQL);
+            while (rs.next())
+            {
+                String idProm = rs.getString("cve_promocion");
+                String nomProm = rs.getString("nombre_promocion");
+                String desc = rs.getString("descuento");
+                String dia = rs.getString("dia");
+                String idCine = rs.getString("id_cine");
+                Promociones pr = new Promociones(idProm, idCine, nomProm, desc, dia);
+                prom.add(pr);
+            }
+        } catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+            System.out.println("Failed to establish a connection with the DB");
+        } finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (selectStmt != null) selectStmt.close();
+            } catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return prom;
+    }
+    
+    
+    public ArrayList<TipoBoleto> leerTodosTipoBoleto()
+    {
+        ArrayList<TipoBoleto> tipoBol = new ArrayList<>();
+        PreparedStatement selectStmt = null;
+        ResultSet rs = null;
+        try
+        {
+            conn = Conexion.getConnection();
+            String readSQL = "SELECT * FROM tipoboleto";
+            selectStmt = conn.prepareStatement(readSQL);
+            rs = selectStmt.executeQuery(readSQL);
+            while (rs.next())
+            {
+                String tipoBoleto = rs.getString("tipo_boleto");
+                int precio = rs.getInt("precio");
+                TipoBoleto tb = new TipoBoleto(tipoBoleto, precio);
+                tipoBol.add(tb);
+            }
+        } catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+            System.out.println("Failed to establish a connection with the DB");
+        } finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (selectStmt != null) selectStmt.close();
+            } catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return tipoBol;
+    }
+    
+    
+    public ArrayList<Clientes> leerTodosClientes()
+    {
+        ArrayList<Clientes> clientes = new ArrayList<>();
+        PreparedStatement selectStmt = null;
+        ResultSet rs = null;
+        try
+        {
+            conn = Conexion.getConnection();
+            String readSQL = "SELECT * FROM clientes";
+            selectStmt = conn.prepareStatement(readSQL);
+            rs = selectStmt.executeQuery(readSQL);
+            while (rs.next())
+            {
+                String idCliente = rs.getString("id_cliente");
+                String idCine = rs.getString("id_cine");
+                String correo = rs.getString("correo_electronico");
+                long telefono = rs.getLong("telefono");
+                String nombre = rs.getString("nombre");
+                String primAp = rs.getString("primer_apellido");
+                String segAp = rs.getString("segundo_apellido");
+                Clientes cs = new Clientes(idCliente, idCine, correo, telefono, nombre, primAp, segAp);
+                clientes.add(cs);
+            }
+        } catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+            System.out.println("Failed to establish a connection with the DB");
+        } finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (selectStmt != null) selectStmt.close();
+            } catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return clientes;
     }
     
 }

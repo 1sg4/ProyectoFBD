@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,7 +32,22 @@ public class VtnPrincipal extends javax.swing.JFrame
     public VtnPrincipal()
     {
         super("PROYECTO FBD - UNIDADES 5 y 6");
+
+        try
+        {
+            javafx.application.Platform.setImplicitExit(false); // <-- esto mantiene viva la plataforma
+
+            javafx.application.Platform.startup(() ->
+            {
+                // JavaFX ya está activo, pero no hacemos nada aquí
+            });
+        } catch (IllegalStateException e)
+        {
+            // Ya estaba iniciado, no hay problema
+        }
+
         initComponents();
+
     }
 
     /**
@@ -56,6 +72,8 @@ public class VtnPrincipal extends javax.swing.JFrame
         lblCartelera = new javax.swing.JLabel();
         pnlBarraTitulo = new javax.swing.JPanel();
         lblOperaciones = new javax.swing.JLabel();
+        btnConsultaClientes = new javax.swing.JPanel();
+        lblConsultaClientes = new javax.swing.JLabel();
         pnlTitulo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblListaSucursales = new javax.swing.JLabel();
@@ -246,7 +264,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         pnlBarraTituloLayout.setHorizontalGroup(
             pnlBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBarraTituloLayout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblOperaciones)
                 .addGap(82, 82, 82))
         );
@@ -256,6 +274,45 @@ public class VtnPrincipal extends javax.swing.JFrame
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(lblOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+        );
+
+        btnConsultaClientes.setBackground(new java.awt.Color(136, 167, 208));
+        btnConsultaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultaClientes.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                btnConsultaClientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt)
+            {
+                btnConsultaClientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt)
+            {
+                btnConsultaClientesMouseExited(evt);
+            }
+        });
+
+        lblConsultaClientes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblConsultaClientes.setForeground(new java.awt.Color(255, 255, 255));
+        lblConsultaClientes.setText("CONSULTAR CLIENTES");
+
+        javax.swing.GroupLayout btnConsultaClientesLayout = new javax.swing.GroupLayout(btnConsultaClientes);
+        btnConsultaClientes.setLayout(btnConsultaClientesLayout);
+        btnConsultaClientesLayout.setHorizontalGroup(
+            btnConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnConsultaClientesLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lblConsultaClientes)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        btnConsultaClientesLayout.setVerticalGroup(
+            btnConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnConsultaClientesLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(lblConsultaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout barraLateralLayout = new javax.swing.GroupLayout(barraLateral);
@@ -268,6 +325,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 .addComponent(btnRegistrarPelicula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCartelera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(pnlBarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnConsultaClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         barraLateralLayout.setVerticalGroup(
             barraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +339,9 @@ public class VtnPrincipal extends javax.swing.JFrame
                 .addComponent(btnRegistrarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCartelera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConsultaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pnlTitulo.setBackground(new java.awt.Color(83, 121, 164));
@@ -373,7 +433,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                     .addGroup(pnlPrincipalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(barraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -401,8 +461,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
-    
-    
+
     private void btnComprarMouseExited(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnComprarMouseExited
     {//GEN-HEADEREND:event_btnComprarMouseExited
         btnComprar.setBackground(new Color(136, 167, 208));
@@ -413,13 +472,13 @@ public class VtnPrincipal extends javax.swing.JFrame
         btnComprar.setBackground(new Color(104, 141, 185));
     }//GEN-LAST:event_btnComprarMouseEntered
 
+    VtnCompBol comprar = new VtnCompBol();
     private void btnComprarMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnComprarMouseClicked
     {//GEN-HEADEREND:event_btnComprarMouseClicked
-
+        comprar.setVisible(true);
     }//GEN-LAST:event_btnComprarMouseClicked
-    
-    
-    
+
+
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         if (!isConnected)
@@ -446,12 +505,11 @@ public class VtnPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnRegistrarPeliculaMouseExited
         btnRegistrarPelicula.setBackground(new Color(136, 167, 208));
     }//GEN-LAST:event_btnRegistrarPeliculaMouseExited
-    
-    
-//    VtnClientes regClientes = new VtnClientes();
+
+    VtnClientes regClientes = new VtnClientes();
     private void btnRegistrarClienteMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnRegistrarClienteMouseClicked
     {//GEN-HEADEREND:event_btnRegistrarClienteMouseClicked
-  //      regClientes.setVisible(true);
+        regClientes.setVisible(true);
     }//GEN-LAST:event_btnRegistrarClienteMouseClicked
 
     private void btnRegistrarClienteMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnRegistrarClienteMouseEntered
@@ -464,11 +522,23 @@ public class VtnPrincipal extends javax.swing.JFrame
         btnRegistrarCliente.setBackground(new Color(136, 167, 208));
     }//GEN-LAST:event_btnRegistrarClienteMouseExited
 
-    
-    
     private void btnCarteleraMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnCarteleraMouseClicked
     {//GEN-HEADEREND:event_btnCarteleraMouseClicked
-        // TODO add your handling code here:
+//        VtnCartelera cartelera = new VtnCartelera();
+//        cartelera.mostrar();
+        javafx.application.Platform.runLater(() ->
+        {
+            try
+            {
+                VtnCartelera cartelera = new VtnCartelera();
+                cartelera.mostrar();  // Este método debería lanzar el Stage
+            } catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+        });
+
     }//GEN-LAST:event_btnCarteleraMouseClicked
 
     private void btnCarteleraMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnCarteleraMouseEntered
@@ -480,7 +550,23 @@ public class VtnPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btnCarteleraMouseExited
         btnCartelera.setBackground(new Color(136, 167, 208));
     }//GEN-LAST:event_btnCarteleraMouseExited
-    
+
+    VtnConsultaClientes consClientes = new VtnConsultaClientes();
+    private void btnConsultaClientesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnConsultaClientesMouseClicked
+    {//GEN-HEADEREND:event_btnConsultaClientesMouseClicked
+        consClientes.setVisible(true);
+    }//GEN-LAST:event_btnConsultaClientesMouseClicked
+
+    private void btnConsultaClientesMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnConsultaClientesMouseEntered
+    {//GEN-HEADEREND:event_btnConsultaClientesMouseEntered
+        btnConsultaClientes.setBackground(new Color(104, 141, 185));
+    }//GEN-LAST:event_btnConsultaClientesMouseEntered
+
+    private void btnConsultaClientesMouseExited(java.awt.event.MouseEvent evt)//GEN-FIRST:event_btnConsultaClientesMouseExited
+    {//GEN-HEADEREND:event_btnConsultaClientesMouseExited
+        btnConsultaClientes.setBackground(new Color(136, 167, 208));
+    }//GEN-LAST:event_btnConsultaClientesMouseExited
+
     public void listarCines()
     {
         model = (DefaultTableModel) tblCines.getModel();
@@ -546,11 +632,13 @@ public class VtnPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel barraLateral;
     private javax.swing.JPanel btnCartelera;
     private javax.swing.JPanel btnComprar;
+    private javax.swing.JPanel btnConsultaClientes;
     private javax.swing.JPanel btnRegistrarCliente;
     private javax.swing.JPanel btnRegistrarPelicula;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCartelera;
     private javax.swing.JLabel lblComprar;
+    private javax.swing.JLabel lblConsultaClientes;
     private javax.swing.JLabel lblListaSucursales;
     private javax.swing.JLabel lblOperaciones;
     private javax.swing.JLabel lblRegistrar;

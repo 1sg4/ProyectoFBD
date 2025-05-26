@@ -25,16 +25,15 @@ public class PagosSQL
         this.pstmt = pstmt;
     }
 
-    public boolean insertar(String idPago, String idCliente, int cantBoletos, String metodoPago, double montoPagado)throws SQLException
+    public boolean insertar(String idPago, String idCliente, String metodoPago, double montoPagado)throws SQLException
     {
         try
         {
             // Establecer los parámetros en el PreparedStatement
             pstmt.setString(1, idPago);
-            pstmt.setInt(2, cantBoletos);
-            pstmt.setString(3, metodoPago);
-            pstmt.setDouble(4, montoPagado);
-            pstmt.setString(5, idCliente);
+            pstmt.setString(2, metodoPago);
+            pstmt.setDouble(3, montoPagado);
+            pstmt.setString(4, idCliente);
             // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
             return true;

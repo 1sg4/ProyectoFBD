@@ -380,6 +380,8 @@ public class VtnCompBol extends javax.swing.JFrame
         comboProm.setEnabled(true);
         txtFecha.setEnabled(true);
         comboTipoBoleto.setEnabled(true);
+        btnContinuaPago.setEnabled(true);
+        btnCancelarOp.setEnabled(true);
 
         lblIdCliente.setEnabled(false);
         txtIdPago.setEnabled(false);
@@ -555,6 +557,9 @@ public class VtnCompBol extends javax.swing.JFrame
                             System.out.println("modificarEA Funciono");
                             System.out.println("registro exitoso");
                             conn.commit();
+                            
+                            btnCancelarOp.setEnabled(true);
+                            
                         } else
                         {
                             throw new SQLException();

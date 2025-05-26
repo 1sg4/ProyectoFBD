@@ -63,12 +63,18 @@ public class ElementosAsientosSQL
     {
         try
         {
-            pstmt.setString(1, idAsientoFuncion);
-            pstmt.setString(2, disponibilidad);
-            pstmt.setString(3,noBoleto);
+            System.out.println("dentro de modificar");
+            pstmt.setString(1, disponibilidad);
+            pstmt.setString(2, noBoleto);
+            pstmt.setString(3,idAsientoFuncion);
+            System.out.println("EJECUTANDO UPDATE CON: ");
+            System.out.println("ID ASIENTO FUNCION: "+idAsientoFuncion);
+            System.out.println("DISPONIBILIDAD: "+disponibilidad);
+            System.out.println("NOBOLETO: "+noBoleto);
 //            pstmt.setQueryTimeout(10);
             int reg = pstmt.executeUpdate();
-            return true;
+            System.out.println("Filas modificadas: "+reg);
+            return reg>0;
         } catch (SQLException ex)
         {
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());

@@ -91,6 +91,7 @@ public class Control
     public boolean modificarEA(Connection conn,String idAsientoFuncion, String disponibilidad,String noBoleto) throws SQLException
     {
         try{
+            System.out.println("Dentro de modificarEA");
             String sql = "UPDATE ELEMENTOS_ASIENTO SET DISPONIBILIDAD = ?, NO_BOLETO = ? WHERE ID_ASIENTO_FUNCION = ?";
             PreparedStatement pstmt = Conexion.creaConsulta(conn, sql);
             ElementosAsientosSQL modEA = new ElementosAsientosSQL(pstmt);
@@ -120,7 +121,7 @@ public class Control
     public boolean insertarP(Connection conn,String idPago, String idCliente, String metodoPago, double montoPagado)throws SQLException
     {
         try{
-        String sql = "insert INTO PAGOS (ID_PAGO, METODO_PAGO,MONTO_PAGADO,ID_CLIENTE) VALUES (?,?,?,?,?)";
+        String sql = "insert INTO PAGOS (ID_PAGO, METODO_PAGO,MONTO_PAGADO,ID_CLIENTE) VALUES (?,?,?,?)";
         PreparedStatement pstmt = Conexion.creaConsultagenerada(conn, sql);
         PagosSQL insF = new PagosSQL(pstmt);
         return insF.insertar(idPago, idCliente, metodoPago, montoPagado);

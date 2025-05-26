@@ -41,7 +41,7 @@ public class BoletosSQL
         } catch (SQLException ex)
         {
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
-             ex.printStackTrace();
+
              return false;
         }
     }

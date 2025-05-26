@@ -24,11 +24,11 @@ import javax.swing.SwingWorker;
  */
 public class VtnCompBol extends javax.swing.JFrame
 {
+
     Control ctrl = new Control();
     ArrayList<Promociones> listarPromociones = new ArrayList<>();
     ArrayList<TipoBoleto> listarTipos = new ArrayList<>();
-    
-    
+
     /**
      * Creates new form VtnCompBol
      */
@@ -186,11 +186,6 @@ public class VtnCompBol extends javax.swing.JFrame
             }
         });
 
-        comboProm.setSelectedIndex(-1);
-
-        comboTipoBoleto.setSelectedIndex(-1);
-
-        comboMetodo.setSelectedIndex(-1);
         comboMetodo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -270,8 +265,8 @@ public class VtnCompBol extends javax.swing.JFrame
                                     .addComponent(lblMonto))
                                 .addGap(51, 51, 51)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboMetodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblIdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(comboMetodo, 0, 130, Short.MAX_VALUE)
+                                    .addComponent(lblIdCliente)
                                     .addComponent(txtIdPago)
                                     .addComponent(txtMonto))))
                         .addGap(77, 77, 77))))
@@ -319,7 +314,7 @@ public class VtnCompBol extends javax.swing.JFrame
                                     .addComponent(lblMetodo)
                                     .addComponent(comboProm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -343,7 +338,7 @@ public class VtnCompBol extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnContinuaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -351,16 +346,16 @@ public class VtnCompBol extends javax.swing.JFrame
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(36, 36, 36)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -371,7 +366,7 @@ public class VtnCompBol extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -385,7 +380,7 @@ public class VtnCompBol extends javax.swing.JFrame
         comboProm.setEnabled(true);
         txtFecha.setEnabled(true);
         comboTipoBoleto.setEnabled(true);
-        
+
         lblIdCliente.setEnabled(false);
         txtIdPago.setEnabled(false);
         comboMetodo.setEnabled(false);
@@ -408,29 +403,53 @@ public class VtnCompBol extends javax.swing.JFrame
             {
                 case "NORMAL":
                 {
-                    if (promAplicada.equals("PROM-00000")) cantidad = "80";
-                    if (promAplicada.equals("PROM-00001")) cantidad = "56";
-                    if (promAplicada.equals("PROM-00002")) cantidad = "40";
-                    if (promAplicada.equals("PROM-00003")) cantidad = "48";                  
+                    if (promAplicada.equals("PROM-00000"))
+                    {
+                        cantidad = "80";
+                    }
+                    if (promAplicada.equals("PROM-00001"))
+                    {
+                        cantidad = "56";
+                    }
+                    if (promAplicada.equals("PROM-00002"))
+                    {
+                        cantidad = "40";
+                    }
+                    if (promAplicada.equals("PROM-00003"))
+                    {
+                        cantidad = "48";
+                    }
                     break;
                 }
                 case "VIP":
                 {
-                    if (promAplicada.equals("PROM-00000")) cantidad = "200";
-                    if (promAplicada.equals("PROM-00001")) cantidad = "140";
-                    if (promAplicada.equals("PROM-00002")) cantidad = "100";
-                    if (promAplicada.equals("PROM-00003")) cantidad = "120";  
+                    if (promAplicada.equals("PROM-00000"))
+                    {
+                        cantidad = "200";
+                    }
+                    if (promAplicada.equals("PROM-00001"))
+                    {
+                        cantidad = "140";
+                    }
+                    if (promAplicada.equals("PROM-00002"))
+                    {
+                        cantidad = "100";
+                    }
+                    if (promAplicada.equals("PROM-00003"))
+                    {
+                        cantidad = "120";
+                    }
                     break;
                 }
             }
-            
+
             txtMonto.setText(cantidad);
             lblIdCliente.setEnabled(true);
             txtIdPago.setEnabled(true);
             comboMetodo.setEnabled(true);
             btnRegistrarCompra.setEnabled(true);
             btnCancelarPago.setEnabled(true);
-            
+
             txtIdFuncion.setEnabled(false);
             txtBoleto.setEnabled(false);
             txtAsiento.setEnabled(false);
@@ -440,8 +459,8 @@ public class VtnCompBol extends javax.swing.JFrame
             btnContinuaPago.setEnabled(false);
             btnCancelarOp.setEnabled(false);
         }
-        
-        
+
+
     }//GEN-LAST:event_btnContinuaPagoActionPerformed
 
     private void lblIdClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_lblIdClienteActionPerformed
@@ -451,7 +470,7 @@ public class VtnCompBol extends javax.swing.JFrame
 
     private void btnCancelarOpActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarOpActionPerformed
     {//GEN-HEADEREND:event_btnCancelarOpActionPerformed
-        if (txtIdFuncion.getText().equals("") && txtBoleto.getText().equals("") 
+        if (txtIdFuncion.getText().equals("") && txtBoleto.getText().equals("")
                 && txtAsiento.getText().equals("") && comboProm.getSelectedIndex() == -1 && txtFecha.getText().equals("")
                 && comboTipoBoleto.getSelectedIndex() == -1 && lblIdCliente.getText().equals("") && txtIdPago.getText().equals("")
                 && txtMonto.getText().equals("") && comboMetodo.getSelectedIndex() == -1)
@@ -465,7 +484,7 @@ public class VtnCompBol extends javax.swing.JFrame
                 txtIdFuncion.setText("");
                 txtBoleto.setText("");
                 txtAsiento.setText("");
-                comboProm.setSelectedIndex(-1); 
+                comboProm.setSelectedIndex(-1);
                 txtFecha.setText("");
                 comboTipoBoleto.setSelectedIndex(-1);
                 lblIdCliente.setText("");
@@ -473,15 +492,15 @@ public class VtnCompBol extends javax.swing.JFrame
                 txtMonto.setText("");
                 comboMetodo.setSelectedIndex(-1);
                 this.dispose();
-            } 
-        } 
+            }
+        }
     }//GEN-LAST:event_btnCancelarOpActionPerformed
 
     private void btnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRegistrarCompraActionPerformed
     {//GEN-HEADEREND:event_btnRegistrarCompraActionPerformed
         try
         {
-            String p = "";
+            double p = 0;
             String noBoleto = txtBoleto.getText();
             String idPago = txtIdPago.getText();
             String noAsiento = txtAsiento.getText();
@@ -489,24 +508,23 @@ public class VtnCompBol extends javax.swing.JFrame
             String tipoBoleto = comboTipoBoleto.getSelectedItem().toString();
             if (tipoBoleto.equals("NORMAL"))
             {
-                p = "80";
+                p = 80;
             } else if (tipoBoleto.equals("VIP"))
             {
-                p = "200";
-            }         
+                p = 200;
+            }
             if (comboTipoBoleto.getSelectedIndex() == -1)
             {
                 tipoBoleto = "NORMAL";
             }
             String fechaComp = txtFecha.getText();
-            String precioBol = p;
             String idFuncion = txtIdFuncion.getText();
             String idCliente = lblIdCliente.getText();
             String metodoPago = comboMetodo.getSelectedItem().toString();
             String montoPago = txtMonto.getText();
 
             double montoP = Double.parseDouble(montoPago);
-            double pre = Double.parseDouble(precioBol);
+            String idAsientoFuncion = idFuncion + "-" + noAsiento;
 
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date fechaUtil = formato.parse(fechaComp);
@@ -519,23 +537,35 @@ public class VtnCompBol extends javax.swing.JFrame
             {
                 Control ctr = new Control();
                 System.out.println("controlador creado");
-                boolean okPago=ctr.insertarP(conn, idPago, idCliente, metodoPago, montoP);
-                boolean okBoleto,okModificacion;
+                boolean okPago = ctr.insertarP(conn, idPago, idCliente, metodoPago, montoP);
+                boolean okBoleto, okModificacion;
                 if (okPago)
                 {
                     System.out.println("insertarPago funciono");
-                    okBoleto=ctr.insertarB(conn, noBoleto, idPago, idFuncion, cveProm, tipoBoleto, fechaSQL, pre);
+                    okBoleto = ctr.insertarB(conn, noBoleto, idPago, idAsientoFuncion, cveProm, tipoBoleto, fechaSQL, p);
                     if (okBoleto)
                     {
                         System.out.println("insertarB funciono");
-                        okModificacion=ctr.modificarEA(conn, idFuncion, "OCUPADO", noBoleto);
+                        System.out.println("Entrando a modificarEA con: ");
+                        System.out.println("idasfun: " + idAsientoFuncion);
+                        System.out.println("nobol: " + noBoleto);
+                        okModificacion = ctr.modificarEA(conn, idAsientoFuncion, "OCUPADO", noBoleto);
                         if (okModificacion)
                         {
                             System.out.println("modificarEA Funciono");
                             System.out.println("registro exitoso");
                             conn.commit();
+                        } else
+                        {
+                            throw new SQLException();
                         }
+                    } else
+                    {
+                        throw new SQLException();
                     }
+                } else
+                {
+                    throw new SQLException();
                 }
             } catch (SQLException e)
             {
@@ -543,6 +573,7 @@ public class VtnCompBol extends javax.swing.JFrame
                 System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + e.getMessage());
             } finally
             {
+                conn.setAutoCommit(true);
                 conn.close();
             }
 
@@ -568,30 +599,29 @@ public class VtnCompBol extends javax.swing.JFrame
     public void cargaComboPromociones()
     {
         listarPromociones = ctrl.leerTodasPromociones();
-        
+
         for (Promociones prom : listarPromociones)
         {
             comboProm.addItem(prom.getCvePromocion());
         }
     }
-    
+
     public void cargaComboTipoBoleto()
     {
         listarTipos = ctrl.leerTodosTipoBoleto();
-        
+
         for (TipoBoleto tb : listarTipos)
         {
             comboTipoBoleto.addItem(tb.getTipoBoleto());
         }
     }
-    
+
     public void cargaMetodosPago()
     {
         comboMetodo.addItem("CREDITO");
         comboMetodo.addItem("DEBITO");
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

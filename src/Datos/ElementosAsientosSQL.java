@@ -26,13 +26,11 @@ public class ElementosAsientosSQL
     {
         try
         {
-            // Establecer los parámetros en el PreparedStatement
             pstmt.setString(1, idAsientoFuncion);
             pstmt.setString(2, idFuncion);
             pstmt.setString(3, noAsiento);
             pstmt.setString(4, disponibilidad);
             pstmt.setString(5, noBoleto);
-            // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
         } catch (SQLException ex)
         {
@@ -51,14 +49,12 @@ public class ElementosAsientosSQL
             System.out.println("ID ASIENTO FUNCION: "+idAsientoFuncion);
             System.out.println("DISPONIBILIDAD: "+disponibilidad);
             System.out.println("NOBOLETO: "+noBoleto);
-//            pstmt.setQueryTimeout(10);
             int reg = pstmt.executeUpdate();
             System.out.println("Filas modificadas: "+reg);
-            return reg>0;
+            return true;
         } catch (SQLException ex)
         {
-            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
-             ex.printStackTrace();
+            System.out.println("VTNEAjava.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
              return false;
         }
     }

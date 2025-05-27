@@ -79,7 +79,6 @@ public class VtnPrincipal extends javax.swing.JFrame
         lblListaSucursales = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCines = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter()
@@ -405,8 +404,6 @@ public class VtnPrincipal extends javax.swing.JFrame
             tblCines.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_cinetec1-removebg-preview.png"))); // NOI18N
-
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
@@ -421,10 +418,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
                         .addComponent(lblListaSucursales)
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(156, 156, 156))))
+                        .addGap(74, 74, 74))))
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,9 +429,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                         .addGap(12, 12, 12)
                         .addComponent(lblListaSucursales, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlPrincipalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(barraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -643,7 +635,6 @@ VtnPeliculas regPeliculas = new VtnPeliculas();
     private javax.swing.JPanel btnConsultaClientes;
     private javax.swing.JPanel btnRegistrarCliente;
     private javax.swing.JPanel btnRegistrarPelicula;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCartelera;
     private javax.swing.JLabel lblComprar;

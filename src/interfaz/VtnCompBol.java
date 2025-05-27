@@ -81,7 +81,6 @@ public class VtnCompBol extends javax.swing.JFrame
         comboProm = new javax.swing.JComboBox<>();
         comboTipoBoleto = new javax.swing.JComboBox<>();
         comboMetodo = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter()
@@ -189,8 +188,6 @@ public class VtnCompBol extends javax.swing.JFrame
 
         comboMetodo.setEnabled(false);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_cinetec1-removebg-preview.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -266,14 +263,12 @@ public class VtnCompBol extends javax.swing.JFrame
                         .addGap(77, 77, 77))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblMetodo)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(btnRegistrarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(32, 32, 32)
-                                    .addComponent(btnCancelarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMetodo)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnRegistrarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnCancelarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(451, 451, 451))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -338,15 +333,12 @@ public class VtnCompBol extends javax.swing.JFrame
                             .addComponent(btnCancelarPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRegistrarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelarOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnContinuaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarOp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContinuaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -556,17 +548,11 @@ public class VtnCompBol extends javax.swing.JFrame
                         okModificacion = ctr.modificarEA(conn, idAsientoFuncion, "OCUPADO", noBoleto);
                         if (okModificacion)
                         {
-                            JOptionPane.showMessageDialog(this, "Registro insertado con éxito.");
+                            System.out.println("Registro exitoso");
                             conn.commit();
-                        } else
-                        {
-                            throw new SQLException();
                         }
-                    } else
-                    {
-                        throw new SQLException();
-                    }
-                } else
+                    } 
+                }else
                 {
                     throw new SQLException();
                 }
@@ -585,6 +571,7 @@ public class VtnCompBol extends javax.swing.JFrame
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         } catch (ParseException ex)
         {
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
             Logger.getLogger(VtnCompBol.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnRegistrarCompraActionPerformed
@@ -680,7 +667,6 @@ public class VtnCompBol extends javax.swing.JFrame
     private javax.swing.JComboBox<String> comboTipoBoleto;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -288,6 +288,7 @@ public class VtnClientes extends javax.swing.JFrame
             }
             tel = Long.parseLong(telefono);
             ctr.insertarC(idCliente, idCine, correoElectronico, tel, nombre, primerApellido, segundoApellido);
+            
         } catch (SQLException e)
         {
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + e.getMessage());

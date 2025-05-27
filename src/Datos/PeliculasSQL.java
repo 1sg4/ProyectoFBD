@@ -82,7 +82,7 @@ public class PeliculasSQL
                 System.out.println("No se pudo insertar el registro.");
             }
         } catch (SQLException ex) {
-            System.err.println("Error durante la inserción: " + ex.getMessage());
+            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         } catch (FileNotFoundException ex) {
             System.err.println("Archivo no encontrado: " + ex.getMessage());
         }finally {

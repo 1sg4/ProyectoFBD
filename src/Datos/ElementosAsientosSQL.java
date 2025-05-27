@@ -39,26 +39,6 @@ public class ElementosAsientosSQL
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
         }
     }
-//    public int eliminar(String idAsientoFuncion)
-//    {
-//        try
-//        {
-//            pstmt.setString(1, idAsientoFuncion);
-//            int reg = pstmt.executeUpdate();
-//            if (reg > 0)
-//            {
-//                return 0;
-//            } else
-//            {
-//                return 1;
-//            }
-//        } catch (SQLException ex)
-//        {
-//            ex.printStackTrace();
-//            return -1;
-//        }
-//    }
-
     public boolean modificar(String idAsientoFuncion, String disponibilidad,String noBoleto) throws SQLException
     {
         try
@@ -83,45 +63,4 @@ public class ElementosAsientosSQL
         }
     }
 
-    public ElementosAsientos buscar(String idAsientoFuncion)
-    {
-        try
-        {
-            pstmt.setString(1, idAsientoFuncion);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next())
-            {
-                String idFuncion = rs.getString("idFuncion");
-                String noAsiento=rs.getString("noAsiento");
-                String disponibilidad = rs.getString("disponibilidad");
-                String noBoleto = rs.getString("noBoleto");
-                return new ElementosAsientos(idAsientoFuncion,idFuncion,noAsiento,disponibilidad,noBoleto);
-            } else
-            {
-                return null;
-            }
-        } catch (SQLException ex)
-        {
-            System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
-            return null;
-        }
-    }
-
-    public ArrayList<ElementosAsientos> listarEA()
-    {
-        ArrayList<ElementosAsientos> lista = new ArrayList<>();
-        try
-        {
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next())
-            {
-                ElementosAsientos ea = new ElementosAsientos(rs.getString("idAsientoFuncion"),rs.getString("idFuncion"),rs.getString("noAsiento"), rs.getString("disponibilidad"),rs.getString("noBoleto"));
-                lista.add(ea);
-            }
-        } catch (SQLException ex)
-        {
-           System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
-        }
-        return lista;
-    }
 }

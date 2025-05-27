@@ -29,19 +29,15 @@ public class PagosSQL
     {
         try
         {
-            // Establecer los parámetros en el PreparedStatement
             pstmt.setString(1, idPago);
             pstmt.setString(2, metodoPago);
             pstmt.setDouble(3, montoPagado);
             pstmt.setString(4, idCliente);
-            // Ejecutar la inserción
             int reg = pstmt.executeUpdate();
-            return true;
-
+            return reg>0;
         } catch (SQLException ex)
         {
             System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
-             ex.printStackTrace();
              return false;
         }
     }

@@ -71,7 +71,6 @@ public class VtnPeliculas extends javax.swing.JFrame
         lblIDClasif = new javax.swing.JLabel();
         txtRutaTrailer = new javax.swing.JTextField();
         txtRutaFoto = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
@@ -188,8 +187,6 @@ public class VtnPeliculas extends javax.swing.JFrame
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_cinetec1-removebg-preview.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -247,7 +244,7 @@ public class VtnPeliculas extends javax.swing.JFrame
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addComponent(jSeparator8))
+                                .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -262,10 +259,7 @@ public class VtnPeliculas extends javax.swing.JFrame
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtRutaTrailer, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtRutaFoto, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
-                                .addComponent(jLabel2)))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,14 +271,9 @@ public class VtnPeliculas extends javax.swing.JFrame
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)))
-                .addGap(32, 32, 32)
+                .addGap(91, 91, 91)
+                .addComponent(jLabel1)
+                .addGap(84, 84, 84)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -501,8 +490,6 @@ public class VtnPeliculas extends javax.swing.JFrame
         String fotoRepresentativa = txtRutaFoto.getText();
         
         obj.insertar(cvePelicula, nombrePelicula, fechaEstreno, idIdioma, idClasificacion, subtitulos, duracion, sipnosis, reparto, trailer, fotoRepresentativa);
-
-        JOptionPane.showMessageDialog(this, "Registro insertado con éxito.");
     } catch (SQLException ex) {
         System.out.println("java.sql.SQLIntegrityConstraintViolationException: " + ex.getMessage());
     }   catch (FileNotFoundException ex)
@@ -600,7 +587,6 @@ public class VtnPeliculas extends javax.swing.JFrame
     private javax.swing.JPanel BtnSalir;
     private javax.swing.JPanel PanelArrba;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

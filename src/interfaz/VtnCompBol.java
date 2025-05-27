@@ -550,7 +550,7 @@ public class VtnCompBol extends javax.swing.JFrame
                         {
                             System.out.println("Registro exitoso");
                             conn.commit();
-                        }
+                        } 
                     } 
                 }else
                 {

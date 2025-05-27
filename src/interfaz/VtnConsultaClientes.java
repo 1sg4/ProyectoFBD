@@ -79,8 +79,6 @@ public class VtnConsultaClientes extends javax.swing.JFrame
         lblInstrucciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInstrucciones.setText("Seleccione una sucursal:");
 
-        comboSucursales.setSelectedIndex(-1);
-
         btnConsultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener()

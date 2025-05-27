@@ -21,7 +21,7 @@ public class Conexion
     static String usuario = "equipoFBD";
     static String contraseña = "10714223";
 
-    // Método para establecer conexión
+
     public boolean conectar()
     {
         boolean b = false;
@@ -55,23 +55,20 @@ public class Conexion
         }
     }
 
-    // Método para crear consultas preparadas
+
     public static PreparedStatement creaConsultagenerada(Connection con, String sql)
     {
         try
         {
-            // Crear PreparedStatement con el parámetro Statement.RETURN_GENERATED_KEYS
-            return con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);  // Importante: esto permite obtener las claves generadas
+            return con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
         } catch (SQLException e)
         {
             System.err.println("Error al crear PreparedStatement: " + e.getMessage());
-            e.printStackTrace();
-            return null;  // Si hubo un error, devolvemos null
+            return null;  
         }
     }
 
-    // Método para cerrar conexión (IMPORTANTE)
     public static void desconectar()
     {
         try
@@ -87,7 +84,6 @@ public class Conexion
         }
     }
 
-    // Método para obtener la conexión actual (útil para transacciones)
     public static Connection getConnection() throws SQLException
     {
         try
@@ -96,7 +92,7 @@ public class Conexion
             {
                 con = DriverManager.getConnection(url, usuario, contraseña);
             }
-            return con; // Retorna directamente la Connection
+            return con;
         } catch (SQLException ex)
         {
             System.err.println("Error al conectar: " + ex.getMessage());
